@@ -2,7 +2,7 @@
 
 A single page walkthrough of the 980 home portfolio Lloyds Living signed with Barratt Redrow in July 2026. I built it to show how I would take a real property deal apart and present it, from the raw stock list through to the yield and the risks.
 
-**Live version:** https://YOUR-USERNAME.github.io/lloyds-living-portfolio/
+**Live version:** https://nishantrv333.github.io/Lloyds-Living/
 
 Prepared by Nishant Vatnal, Analyst.
 
@@ -78,19 +78,6 @@ There is nothing to install and nothing to build. It is one HTML file with the C
 4. Save. The site appears at `https://YOUR-USERNAME.github.io/REPO-NAME/` within a minute or two.
 
 The file has to be named `index.html` and sit at the root of the repository, otherwise Pages will not serve it as the landing page. Update the live link at the top of this README once it is up.
-
----
-
-## Notes on how it is built
-
-- One file, plain HTML, CSS and JavaScript. No frameworks and no build step, so it will still open in ten years.
-- Charts are drawn as SVG in the browser. No charting library.
-- Layout uses CSS variables for colour and spacing, so the four views stay consistent.
-- Works on phone and desktop. The site table turns into stacked cards on narrow screens.
-- Keyboard accessible. Tabs move with the arrow keys, table rows and chart bars respond to Enter.
-- The site plan illustrations are drawn, not photographs. If you want real imagery of the developments it would need to be properly licensed first.
-
----
 
 ## What I would add next
 
