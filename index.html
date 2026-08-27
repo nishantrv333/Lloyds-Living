@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lloyds Living portfolio project | Nishant Vatnal</title>
+<meta name="description" content="A walk through the 980 home Barratt Redrow portfolio for Lloyds Living, prepared by Nishant Vatnal, Analyst.">
+<style>
+:root{
+  --ink:#0C0D0E; --ink-2:#3A3E42; --muted:#6E7379; --faint:#9BA1A7;
+  --tint:#F0F1F2; --tint-2:#F7F8F8; --paper:#FFFFFF;
+  --char:#131416; --on-char:#F2F3F4; --on-char-dim:#9BA1A7;
+
+  --glass:rgba(255,255,255,0.58);
+  --glass-strong:rgba(255,255,255,0.82);
+  --glass-dark:rgba(255,255,255,0.055);
+  --hairline:rgba(12,13,14,0.11);
+  --hairline-soft:rgba(12,13,14,0.06);
+  --hairline-light:rgba(255,255,255,0.14);
+  --sheen:inset 0 1px 0 rgba(255,255,255,0.85);
+  --sheen-dark:inset 0 1px 0 rgba(255,255,255,0.10);
+  --lift:0 1px 1px rgba(12,13,14,0.03), 0 14px 34px -24px rgba(12,13,14,0.30);
+  --lift-lg:0 1px 1px rgba(12,13,14,0.03), 0 28px 60px -34px rgba(12,13,14,0.34);
+  --blur:blur(22px) saturate(1.05);
+
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px;
+  --s6:36px; --s7:56px; --s8:88px; --s9:132px;
+  --r1:6px; --r2:12px; --r3:18px; --r4:26px;
+
+  --display:"Helvetica Neue",Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --body:"Helvetica Neue",Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+
+  --maxw:1180px; --nav-h:66px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.58;font-size:16.5px;-webkit-font-smoothing:antialiased}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;
+  background:
+    radial-gradient(900px 620px at 12% -8%, #EFF0F1 0%, rgba(239,240,241,0) 62%),
+    radial-gradient(760px 560px at 92% 4%, #F2F3F4 0%, rgba(242,243,244,0) 60%),
+    radial-gradient(1100px 700px at 60% 108%, #F1F2F3 0%, rgba(241,242,243,0) 60%),
+    var(--paper);
+}
+button{font:inherit;color:inherit}
+a{color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(12,13,14,.28)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
+
+.eyebrow{font-size:.69rem;letter-spacing:.20em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:0 0 var(--s4)}
+.eyebrow.grey{color:var(--faint)}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;margin:0;color:var(--ink)}
+h1{font-size:clamp(2.7rem,7vw,5.2rem);line-height:.98;letter-spacing:-.045em}
+h2{font-size:clamp(1.8rem,3.6vw,2.9rem);line-height:1.06;letter-spacing:-.035em}
+h3{font-size:1.2rem;line-height:1.28;letter-spacing:-.02em}
+h4{font-size:.95rem;line-height:1.35;letter-spacing:-.01em}
+p{margin:0 0 var(--s4)}
+.lede{font-size:clamp(1.05rem,1.6vw,1.28rem);line-height:1.56;color:var(--ink-2);max-width:62ch}
+.body-copy{color:var(--ink-2);max-width:68ch}
+.small{font-size:.87rem;line-height:1.55;color:var(--muted)}
+.tiny{font-size:.76rem;line-height:1.5;color:var(--faint)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.hint{font-size:.76rem;letter-spacing:.02em;color:var(--faint)}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:60;background:var(--glass-strong);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border-bottom:1px solid var(--hairline)}
+.nav-inner{max-width:var(--maxw);margin:0 auto;height:100%;display:flex;align-items:center;gap:var(--s5);padding:0 var(--s5)}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-name{font-family:var(--display);font-weight:700;letter-spacing:-.03em;font-size:1.06rem}
+.tabs{margin-left:auto;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{border:0;background:transparent;cursor:pointer;white-space:nowrap;padding:8px 14px;border-radius:999px;font-size:.875rem;font-weight:500;color:var(--ink-2);transition:background .18s ease,color .18s ease}
+.tab:hover{background:rgba(12,13,14,.06)}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff}
+
+main{padding-top:var(--nav-h)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--s5)}
+.view{display:none;animation:rise .45s cubic-bezier(.2,.7,.3,1) both}
+.view.is-active{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.glass{background:var(--glass);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:1px solid var(--hairline);border-radius:var(--r3);box-shadow:var(--lift),var(--sheen)}
+.glass-solid{background:var(--glass-strong);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:1px solid var(--hairline);border-radius:var(--r3);box-shadow:var(--lift-lg),var(--sheen)}
+
+/* showcase */
+.showcase{background:var(--char);color:var(--on-char);padding:var(--s9) 0;margin:var(--s8) 0;position:relative;overflow:hidden}
+.showcase::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(900px 500px at 22% 0%, rgba(255,255,255,.07) 0%, rgba(255,255,255,0) 62%)}
+.showcase>.wrap{position:relative;z-index:1}
+.showcase h2,.showcase h3{color:#fff}
+.showcase .eyebrow{color:var(--on-char-dim)}
+.showcase .lede{color:#C7CBCF}
+.showcase .small{color:var(--on-char-dim)}
+.glass-dark{background:var(--glass-dark);-webkit-backdrop-filter:blur(26px) saturate(1.1);backdrop-filter:blur(26px) saturate(1.1);border:1px solid var(--hairline-light);border-radius:var(--r3);box-shadow:0 30px 70px -40px rgba(0,0,0,.9),var(--sheen-dark)}
+.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6);margin-top:var(--s7)}
+.show-card{padding:var(--s6);display:flex;flex-direction:column;gap:var(--s4)}
+.show-card .plan{width:100%;height:auto;display:block;opacity:.9}
+.show-card .cap{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--on-char-dim);font-weight:700}
+.show-stats{display:flex;flex-wrap:wrap;gap:var(--s6);margin-top:auto;padding-top:var(--s4);border-top:1px solid var(--hairline-light)}
+.show-stats .st{display:flex;flex-direction:column;gap:2px}
+.show-stats .st .v{font-family:var(--display);font-size:1.5rem;font-weight:700;letter-spacing:-.035em;color:#fff;line-height:1}
+.show-stats .st .l{font-size:.74rem;letter-spacing:.11em;text-transform:uppercase;color:var(--on-char-dim);font-weight:600}
+.big-figure{display:grid;grid-template-columns:auto 1fr;gap:var(--s7);align-items:center}
+.big-figure .fig{font-family:var(--display);font-weight:700;letter-spacing:-.055em;line-height:.86;font-size:clamp(4.5rem,13vw,11rem);color:#fff}
+.big-figure .fig sup{font-size:.28em;vertical-align:super;margin-left:6px;color:var(--on-char-dim)}
+
+/* hero */
+.hero{padding:var(--s9) 0 var(--s7)}
+.hero h1{margin-bottom:var(--s5)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);align-items:center;margin-top:var(--s5)}
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:.75rem;color:var(--ink-2);background:var(--glass);border:1px solid var(--hairline);padding:5px 12px;border-radius:999px;-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}
+.chip .dot{width:6px;height:6px;border-radius:50%;background:var(--ink)}
+.chip.model .dot{background:var(--faint)}
+
+/* kpi */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s4);margin-top:var(--s7)}
+.kpi{padding:var(--s5);border-radius:var(--r3);display:flex;flex-direction:column;gap:var(--s2);min-height:158px}
+.kpi .label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.kpi .value{font-family:var(--display);font-size:clamp(1.9rem,3.4vw,2.6rem);font-weight:700;letter-spacing:-.04em;line-height:1}
+.kpi .value span.unit{font-size:.85rem;font-weight:500;letter-spacing:0;color:var(--muted);margin-left:6px}
+.kpi .foot{margin-top:auto;font-size:.8rem;color:var(--muted)}
+
+/* controls */
+.controls{display:flex;flex-wrap:wrap;gap:var(--s4);align-items:flex-end;padding:var(--s5);border-radius:var(--r3);margin-bottom:var(--s4)}
+.field{display:flex;flex-direction:column;gap:6px;min-width:190px}
+.field label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+select{appearance:none;-webkit-appearance:none;font-family:var(--body);font-size:.92rem;color:var(--ink);background:rgba(255,255,255,.78);border:1px solid var(--hairline);border-radius:var(--r1);padding:9px 34px 9px 12px;cursor:pointer;
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1.5L6 6.5L11 1.5' stroke='%236E7379' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>");
+ background-repeat:no-repeat;background-position:right 12px center}
+select:hover{border-color:var(--ink)}
+.btn{background:transparent;border:1px solid var(--hairline);border-radius:999px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--ink-2);transition:border-color .18s ease,color .18s ease,background .18s ease}
+.btn:hover{border-color:var(--ink);color:var(--ink)}
+.btn[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.result-count{margin-left:auto;font-size:.85rem;color:var(--muted);padding-bottom:9px}
+.activefilters{display:flex;flex-wrap:wrap;gap:var(--s2);margin-bottom:var(--s5);min-height:1px}
+.fchip{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;background:var(--ink);color:#fff;border:0;border-radius:999px;padding:6px 8px 6px 13px;cursor:pointer}
+.fchip span.x{display:grid;place-items:center;width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.22);font-size:.7rem;line-height:1}
+.fchip:hover span.x{background:rgba(255,255,255,.4)}
+
+/* mix rail */
+.rail-wrap{padding:var(--s6);border-radius:var(--r3)}
+.rail{display:flex;height:30px;border-radius:999px;overflow:hidden;background:var(--tint);margin:var(--s5) 0 var(--s4)}
+.rail-seg{transition:flex-grow .6s cubic-bezier(.2,.7,.3,1),opacity .2s ease;min-width:0;border:0;padding:0;cursor:pointer}
+.rail-seg:hover{opacity:.78}
+.rail-seg[aria-pressed="true"]{box-shadow:inset 0 0 0 2px #fff}
+.rail-key{display:flex;flex-wrap:wrap;gap:var(--s5)}
+.rail-key .k{display:flex;align-items:baseline;gap:8px;font-size:.85rem;color:var(--ink-2)}
+.rail-key .swatch{width:9px;height:9px;border-radius:2px;transform:translateY(-1px)}
+.rail-key .k b{font-family:var(--display);font-weight:700;letter-spacing:-.02em}
+
+/* charts */
+.chart-card{padding:var(--s6);border-radius:var(--r3)}
+.chart-head{display:flex;flex-wrap:wrap;gap:var(--s4);justify-content:space-between;align-items:flex-start;margin-bottom:var(--s5)}
+.legend{display:flex;gap:var(--s5);flex-wrap:wrap}
+.legend .li{display:flex;align-items:center;gap:7px;font-size:.8rem;color:var(--muted)}
+.legend .bar-key{width:12px;height:12px;border-radius:3px;background:var(--ink)}
+.legend .line-key{width:16px;height:2px;background:var(--muted)}
+svg.chart{width:100%;height:auto;display:block;overflow:visible;touch-action:manipulation}
+.hot{cursor:pointer}
+.hot:hover rect.bar,.hot.on rect.bar{fill:#000}
+.tooltip{
+  position:fixed;z-index:80;pointer-events:none;opacity:0;transform:translate(-50%,-115%);
+  background:rgba(12,13,14,.95);color:#fff;border-radius:10px;padding:10px 13px;
+  font-size:.79rem;line-height:1.5;box-shadow:0 18px 40px -20px rgba(0,0,0,.8);
+  transition:opacity .12s ease;max-width:250px
+}
+.tooltip.show{opacity:1}
+.tooltip b{font-weight:700;display:block;margin-bottom:3px;font-size:.83rem}
+.tooltip .tl{color:#A9AFB4}
+
+/* rows */
+.table-card{border-radius:var(--r3);overflow:hidden}
+.row{display:grid;grid-template-columns:2.1fr 1.4fr .7fr 1.5fr 1.25fr .8fr;gap:var(--s4);align-items:center;padding:15px var(--s5);border-bottom:1px solid var(--hairline-soft)}
+.row:last-child{border-bottom:0}
+.row.head{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700;background:#fff;border-bottom:1px solid var(--hairline)}
+.row.head button{background:transparent;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:5px;letter-spacing:inherit}
+.row.head button:hover{color:var(--ink)}
+.row.head button[data-active="true"]{color:var(--ink)}
+.row.head .arrow{font-size:.6rem;opacity:.55}
+.row.body{cursor:pointer}
+.row.body:hover{background:rgba(12,13,14,.03)}
+.row.body[aria-expanded="true"]{background:rgba(12,13,14,.04)}
+.site-name{font-weight:500;letter-spacing:-.01em}
+.site-name .sub{display:block;font-size:.78rem;color:var(--faint);font-weight:400;margin-top:3px}
+.mix-inline{font-family:var(--mono);font-size:.78rem;color:var(--ink-2);letter-spacing:-.02em}
+.mix-inline i{font-style:normal;color:var(--faint)}
+.badge{display:inline-block;font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;border-radius:999px;font-weight:700}
+.badge.confirmed{background:var(--ink);color:#fff}
+.badge.modelled{background:var(--tint);color:var(--muted)}
+.epc{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.86rem}
+.epc .pill{width:23px;height:23px;border-radius:6px;display:grid;place-items:center;font-size:.72rem;font-weight:700;color:#fff;background:var(--ink)}
+.epc .pill.b{background:var(--tint);color:var(--ink-2);border:1px solid var(--hairline)}
+.detail{padding:0 var(--s5) var(--s5);border-bottom:1px solid var(--hairline-soft);background:rgba(12,13,14,.02)}
+.detail-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s5);padding-top:var(--s4)}
+.detail h4{margin-bottom:var(--s3);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.detail .ln{display:flex;justify-content:space-between;gap:var(--s4);font-size:.85rem;padding:5px 0;border-bottom:1px solid var(--hairline-soft)}
+.detail .ln:last-child{border-bottom:0}
+.detail .ln .v{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.detail .say{grid-column:1 / -1;font-size:.87rem;color:var(--ink-2);max-width:80ch;margin:0}
+.empty{padding:var(--s7);text-align:center;color:var(--muted)}
+
+/* research note */
+.note-grid{display:grid;grid-template-columns:1fr 320px;gap:var(--s8);align-items:start}
+.note-side{position:sticky;top:calc(var(--nav-h) + 24px);padding:var(--s5);border-radius:var(--r3)}
+.note-side ol{margin:0;padding-left:18px;font-size:.87rem;color:var(--ink-2);line-height:1.7}
+.note-section{margin-bottom:var(--s7)}
+.note-section h3{margin-bottom:var(--s3)}
+.takeaway{border-left:2px solid var(--ink);padding:var(--s2) 0 var(--s2) var(--s5);margin:var(--s5) 0;max-width:62ch}
+.takeaway .tag{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700;display:block;margin-bottom:6px}
+.takeaway p{margin:0;font-size:1.02rem;line-height:1.5}
+.cmp{width:100%;border-collapse:collapse;font-size:.9rem}
+.cmp th,.cmp td{text-align:left;padding:14px var(--s4);border-bottom:1px solid var(--hairline-soft);vertical-align:top}
+.cmp thead th{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;border-bottom:1px solid var(--hairline)}
+.cmp tbody tr:last-child td{border-bottom:0}
+.cmp tbody tr.us{background:rgba(12,13,14,.05)}
+.cmp td.name{font-weight:500}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* slide */
+.slide{padding:var(--s7);border-radius:var(--r4);background:rgba(255,255,255,.88);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:1px solid var(--hairline);box-shadow:var(--lift-lg),var(--sheen)}
+.slide-head{display:flex;flex-wrap:wrap;gap:var(--s4);justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--hairline);padding-bottom:var(--s5);margin-bottom:var(--s6)}
+.slide-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:var(--s6)}
+.panel{border:1px solid var(--hairline);border-radius:var(--r2);padding:var(--s5);background:rgba(255,255,255,.55)}
+.panel h4{margin-bottom:var(--s3);display:flex;align-items:center;gap:8px}
+.panel h4::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ink)}
+.stat-line{display:flex;justify-content:space-between;gap:var(--s4);padding:7px 0;border-bottom:1px solid var(--hairline-soft);font-size:.88rem}
+.stat-line:last-child{border-bottom:0}
+.stat-line .v{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.stat-line .l{color:var(--muted)}
+.risk-item{width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--hairline-soft);padding:11px 0;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:var(--s3);align-items:start}
+.risk-item:last-of-type{border-bottom:0}
+.risk-item:hover .rname{text-decoration:underline;text-underline-offset:3px}
+.risk-item .sev{width:7px;height:7px;border-radius:50%;margin-top:8px;background:#D6D9DB;border:1px solid var(--hairline)}
+.risk-item .sev.med{background:#9BA1A7;border-color:transparent}
+.risk-item .sev.high{background:var(--ink);border-color:transparent}
+.risk-item .rname{font-size:.88rem;font-weight:500}
+.risk-item .rank{font-family:var(--mono);font-size:.72rem;color:var(--faint);white-space:nowrap}
+.risk-mit{display:none;font-size:.84rem;color:var(--muted);padding:0 0 12px 19px;margin:0;border-bottom:1px solid var(--hairline-soft)}
+.risk-mit.open{display:block}
+.timeline{margin-top:var(--s6);border-top:1px solid var(--hairline);padding-top:var(--s6)}
+.tl-track{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--s3);position:relative;margin-top:var(--s5)}
+.tl-track::before{content:"";position:absolute;left:0;right:0;top:5px;height:1px;background:var(--hairline)}
+.tl-step{position:relative;padding-top:var(--s5)}
+.tl-step::before{content:"";position:absolute;top:0;left:0;width:11px;height:11px;border-radius:50%;background:var(--paper);border:2px solid var(--ink)}
+.tl-step.future::before{border-color:var(--faint)}
+.tl-step .when{font-family:var(--mono);font-size:.76rem;letter-spacing:-.02em;display:block;margin-bottom:4px}
+.tl-step.future .when{color:var(--faint)}
+.tl-step .what{font-size:.85rem;line-height:1.45;color:var(--ink-2)}
+
+/* model sheet */
+.sheet{border-radius:var(--r3);overflow:hidden}
+.sheet-bar{display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap;padding:var(--s4) var(--s5);border-bottom:1px solid var(--hairline);background:rgba(255,255,255,.6)}
+.sheet-name{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.sheet-tabs{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.sheet-tabs::-webkit-scrollbar{display:none}
+.stab{border:1px solid transparent;background:transparent;cursor:pointer;white-space:nowrap;font-size:.82rem;padding:6px 12px;border-radius:var(--r1);color:var(--muted)}
+.stab:hover{color:var(--ink);background:rgba(12,13,14,.05)}
+.stab[aria-selected="true"]{background:#fff;border-color:var(--hairline);color:var(--ink);font-weight:600;box-shadow:0 1px 2px rgba(12,13,14,.05)}
+.sheet-body{padding:var(--s6) var(--s5)}
+.sheet-pane{display:none}
+.sheet-pane.is-active{display:block}
+table.grid{width:100%;border-collapse:collapse;font-size:.85rem}
+table.grid th,table.grid td{padding:9px var(--s3);border-bottom:1px solid var(--hairline-soft);text-align:right;white-space:nowrap}
+table.grid th:first-child,table.grid td:first-child{text-align:left;white-space:normal}
+table.grid thead th{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;border-bottom:1px solid var(--hairline);background:#fff}
+table.grid thead th button{background:transparent;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;letter-spacing:inherit}
+table.grid thead th button:hover{color:var(--ink)}
+table.grid td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+table.grid tbody tr:hover{background:rgba(12,13,14,.03)}
+table.grid tr.total td{border-top:1px solid var(--ink);border-bottom:0;font-weight:700;padding-top:12px}
+table.grid tr.sub td{color:var(--muted)}
+.sheet-note{margin-top:var(--s5);font-size:.8rem;color:var(--faint);max-width:74ch}
+.sens td.cell{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:center;cursor:pointer}
+.sens td.cell:hover{outline:1.5px solid var(--ink);outline-offset:-2px}
+
+/* assumption controls */
+.assump{display:flex;flex-wrap:wrap;gap:var(--s6);align-items:flex-end;padding:var(--s5);border:1px solid var(--hairline);border-radius:var(--r2);background:var(--tint-2);margin-bottom:var(--s5)}
+.slider{display:flex;flex-direction:column;gap:6px;min-width:250px;flex:1}
+.slider .top{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s4)}
+.slider .nm{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.slider .val{font-family:var(--mono);font-size:.95rem;font-weight:600}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:22px;background:transparent;cursor:pointer;margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:3px;background:var(--hairline);border-radius:2px}
+input[type=range]::-moz-range-track{height:3px;background:var(--hairline);border-radius:2px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--ink);margin-top:-6.5px;border:2px solid #fff;box-shadow:0 1px 4px rgba(12,13,14,.35)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--ink);border:2px solid #fff}
+.assump .out{font-family:var(--display);font-weight:700;letter-spacing:-.04em;font-size:2rem;line-height:1}
+.assump .outwrap{display:flex;flex-direction:column;gap:4px;min-width:150px}
+
+/* formulas */
+.btn-fx{white-space:nowrap}
+.fx{display:none;margin-top:var(--s5);border:1px solid var(--hairline);border-radius:var(--r2);background:var(--tint-2);padding:var(--s5)}
+.fx.is-open{display:block}
+.fx .fx-title{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:var(--s4)}
+.fx ul{list-style:none;margin:0;padding:0}
+.fx li{display:grid;grid-template-columns:230px 1fr;gap:var(--s4);align-items:baseline;padding:10px 0;border-bottom:1px solid var(--hairline-soft)}
+.fx li:last-child{border-bottom:0}
+.fx .lbl{font-size:.84rem;color:var(--ink-2)}
+.fx code{font-family:var(--mono);font-size:.8rem;background:#fff;border:1px solid var(--hairline);border-radius:4px;padding:3px 8px;display:inline-block;line-height:1.6}
+
+/* footer */
+.foot{border-top:1px solid var(--hairline);margin-top:var(--s8);padding:var(--s6) 0 var(--s8)}
+.foot-inner{display:flex;flex-wrap:wrap;gap:var(--s5);justify-content:space-between;align-items:flex-start}
+.foot .who{font-weight:600;margin-bottom:4px}
+.foot p{max-width:64ch;margin:0}
+
+@media (max-width:980px){
+  .showcase-grid{grid-template-columns:1fr}
+  .big-figure{grid-template-columns:1fr;gap:var(--s5)}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .note-grid{grid-template-columns:1fr;gap:var(--s6)}
+  .note-side{position:static}
+  .slide-grid{grid-template-columns:1fr}
+  .detail-inner{grid-template-columns:1fr}
+  .tl-track{grid-template-columns:repeat(2,1fr);gap:var(--s5)}
+  .tl-track::before{display:none}
+  .tl-step{padding-left:var(--s5);padding-top:0}
+  .tl-step::before{top:5px}
+}
+@media (max-width:760px){
+  :root{--s8:56px;--s9:76px;--nav-h:58px}
+  .nav-inner{padding:0 var(--s4);gap:var(--s3)}
+  .wrap{padding:0 var(--s4)}
+  .tab{padding:7px 11px;font-size:.82rem}
+  .kpi-grid{grid-template-columns:1fr}
+  .slide{padding:var(--s5)}
+  .row{grid-template-columns:1fr;gap:6px;padding:var(--s4) var(--s5)}
+  .row.head{display:none}
+  .row.body>div{display:flex;justify-content:space-between;gap:var(--s4);align-items:baseline}
+  .row.body>div::before{content:attr(data-label);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:700}
+  .row.body>div:first-child{display:block;margin-bottom:6px}
+  .row.body>div:first-child::before{display:none}
+  .result-count{margin-left:0;padding-bottom:0}
+  .fx li{grid-template-columns:1fr;gap:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
+}
+@media print{ .nav{position:static} main{padding-top:0} body::before{display:none} .glass,.glass-solid,.slide{box-shadow:none;background:#fff} }
+</style>
+</head>
+<body>
+
+<div class="tooltip" id="tip" role="status" aria-live="polite"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+        <path d="M4 12.4L13 4l9 8.4" fill="none" stroke="#0C0D0E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7.2 14.2V21h11.6v-6.8" fill="none" stroke="#0C0D0E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".45"/>
+      </svg>
+      <span class="brand-name">Lloyds Living</span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Views">
+      <button class="tab" role="tab" id="tab-dash" aria-controls="view-dash" aria-selected="true" data-view="dash">Portfolio dashboard</button>
+      <button class="tab" role="tab" id="tab-market" aria-controls="view-market" aria-selected="false" data-view="market">Market note</button>
+      <button class="tab" role="tab" id="tab-pack" aria-controls="view-pack" aria-selected="false" data-view="pack">Committee pack</button>
+      <button class="tab" role="tab" id="tab-model" aria-controls="view-model" aria-selected="false" data-view="model">Financial model</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ======================= DASHBOARD ======================= -->
+<div class="view is-active" id="view-dash" role="tabpanel" aria-labelledby="tab-dash">
+
+  <div class="wrap hero">
+    <p class="eyebrow">Barratt Redrow portfolio, contracts signed July 2026</p>
+    <h1>980 homes,<br>14 sites,<br>four years to deliver.</h1>
+    <p class="lede">This is the portfolio Lloyds Living signed with Barratt Redrow in July. I have laid it out the way I would talk you through it in a meeting. What we have bought, where it sits, when each site reaches us, and what has to be ready before the first family moves in.</p>
+    <p class="lede" style="margin-top:var(--s4)">Everything on this page reacts to you. Filter it, click a bar, open a site. The numbers underneath move with you.</p>
+    <div class="hero-meta">
+      <span class="chip"><span class="dot"></span>Portfolio facts from public announcements</span>
+      <span class="chip model"><span class="dot"></span>Site splits and money researched and built by me</span>
+    </div>
+    <div class="kpi-grid" id="kpiGrid"></div>
+  </div>
+
+  <section class="showcase">
+    <div class="wrap">
+      <p class="eyebrow">First to let, autumn 2026</p>
+      <h2 style="max-width:20ch">Two sites carry the whole of 2026.</h2>
+      <p class="lede" style="margin-top:var(--s5)">Hampton Beach and Burleyfields are the only two named in the announcement, and they are the only two that reach us this year. Everything we learn there about handover quality, how quickly a new street fills up and what people will actually pay is what the other 918 homes get priced on. That is why I watch these two more closely than anything else in the book.</p>
+      <div class="showcase-grid">
+        <article class="show-card glass-dark">
+          <span class="cap">Site 01</span>
+          <svg class="plan" viewBox="0 0 520 230" role="img" aria-label="Abstract site plan for Hampton Beach">
+            <path d="M-10 168 C 120 150, 190 120, 300 118 C 400 116, 470 96, 530 74" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="16" stroke-linecap="round"/>
+            <path d="M-10 168 C 120 150, 190 120, 300 118 C 400 116, 470 96, 530 74" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1" stroke-dasharray="7 9"/>
+            <g fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.2">
+              <rect x="34" y="86" width="46" height="34" rx="2"/><rect x="88" y="80" width="46" height="34" rx="2"/>
+              <rect x="142" y="72" width="46" height="34" rx="2"/><rect x="196" y="66" width="46" height="34" rx="2"/>
+              <rect x="250" y="62" width="46" height="34" rx="2"/><rect x="304" y="56" width="46" height="34" rx="2"/>
+              <rect x="358" y="44" width="46" height="34" rx="2"/><rect x="412" y="32" width="46" height="34" rx="2"/>
+            </g>
+            <g fill="rgba(255,255,255,.92)">
+              <rect x="34" y="86" width="46" height="34" rx="2"/><rect x="142" y="72" width="46" height="34" rx="2"/>
+              <rect x="250" y="62" width="46" height="34" rx="2"/><rect x="358" y="44" width="46" height="34" rx="2"/>
+            </g>
+            <g fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.2">
+              <rect x="60" y="186" width="52" height="30" rx="2"/><rect x="122" y="190" width="52" height="30" rx="2"/>
+              <rect x="184" y="192" width="52" height="30" rx="2"/><rect x="246" y="190" width="52" height="30" rx="2"/>
+              <rect x="308" y="186" width="52" height="30" rx="2"/><rect x="370" y="176" width="52" height="30" rx="2"/>
+            </g>
+            <circle cx="484" cy="30" r="3" fill="#fff"/>
+          </svg>
+          <h3>Hampton Beach, Peterborough</h3>
+          <p class="small">Our biggest single site and the one that sets the rent tone for Cambridgeshire and Northamptonshire. If the first 34 homes here let quickly at the price I have modelled, the regional assumption holds.</p>
+          <div class="show-stats">
+            <div class="st"><span class="v">96</span><span class="l">Homes</span></div>
+            <div class="st"><span class="v">34</span><span class="l">Reach us in 2026</span></div>
+            <div class="st"><span class="v">A</span><span class="l">EPC, modelled</span></div>
+          </div>
+        </article>
+        <article class="show-card glass-dark">
+          <span class="cap">Site 02</span>
+          <svg class="plan" viewBox="0 0 520 230" role="img" aria-label="Abstract site plan for Burleyfields">
+            <path d="M-10 60 C 90 92, 150 150, 260 152 C 370 154, 440 128, 530 152" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="16" stroke-linecap="round"/>
+            <path d="M-10 60 C 90 92, 150 150, 260 152 C 370 154, 440 128, 530 152" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1" stroke-dasharray="7 9"/>
+            <g fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.2">
+              <rect x="40" y="16" width="44" height="32" rx="2"/><rect x="92" y="24" width="44" height="32" rx="2"/>
+              <rect x="144" y="36" width="44" height="32" rx="2"/><rect x="196" y="52" width="44" height="32" rx="2"/>
+              <rect x="256" y="60" width="44" height="32" rx="2"/><rect x="312" y="58" width="44" height="32" rx="2"/>
+              <rect x="368" y="50" width="44" height="32" rx="2"/>
+            </g>
+            <g fill="rgba(255,255,255,.92)">
+              <rect x="92" y="24" width="44" height="32" rx="2"/><rect x="196" y="52" width="44" height="32" rx="2"/>
+              <rect x="312" y="58" width="44" height="32" rx="2"/>
+            </g>
+            <g fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.2">
+              <rect x="70" y="182" width="50" height="30" rx="2"/><rect x="130" y="188" width="50" height="30" rx="2"/>
+              <rect x="190" y="192" width="50" height="30" rx="2"/><rect x="250" y="194" width="50" height="30" rx="2"/>
+              <rect x="310" y="190" width="50" height="30" rx="2"/><rect x="370" y="184" width="50" height="30" rx="2"/>
+              <rect x="430" y="176" width="50" height="30" rx="2"/>
+            </g>
+            <circle cx="470" cy="42" r="3" fill="#fff"/>
+          </svg>
+          <h3>Burleyfields, Stafford</h3>
+          <p class="small">Our test of the West Midlands rent level. Two thirds of it is three and four bed houses, so the average rent runs above the portfolio and the tenants tend to stay longer.</p>
+          <div class="show-stats">
+            <div class="st"><span class="v">88</span><span class="l">Homes</span></div>
+            <div class="st"><span class="v">28</span><span class="l">Reach us in 2026</span></div>
+            <div class="st"><span class="v">A</span><span class="l">EPC, modelled</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap" style="padding-bottom:var(--s7)">
+    <h2 style="max-width:24ch;margin-bottom:var(--s4)">Have a look through it yourself.</h2>
+    <p class="lede" style="margin-bottom:var(--s6)">Pick a region or a size of house and the cards, the mix bar, the chart and the table all move together. Click a bar on the chart to see only the sites landing that year. Click any site to open the rent, the capital and the phasing behind it.</p>
+
+    <div class="controls glass" role="group" aria-label="Filter the portfolio">
+      <div class="field">
+        <label for="fRegion">Region</label>
+        <select id="fRegion"></select>
+      </div>
+      <div class="field">
+        <label for="fType">Size of home</label>
+        <select id="fType">
+          <option value="all">All sizes</option>
+          <option value="0">1 bed</option>
+          <option value="1">2 bed</option>
+          <option value="2">3 bed</option>
+          <option value="3">4 bed</option>
+        </select>
+      </div>
+      <button class="btn" id="fReset" type="button">Clear everything</button>
+      <div class="result-count" id="resultCount"></div>
+    </div>
+    <div class="activefilters" id="activeFilters"></div>
+
+    <div class="rail-wrap glass" style="margin-bottom:var(--s5)">
+      <p class="eyebrow grey" style="margin-bottom:0">What sizes of house we are buying</p>
+      <div class="rail" id="mixRail"></div>
+      <div class="rail-key" id="mixKey"></div>
+      <p class="hint" style="margin:var(--s4) 0 0">Click a band to look at that size on its own. Nearly two thirds of the book is three and four bed family houses, which is deliberate. Those tenants move less often, so we spend less on re letting.</p>
+    </div>
+
+    <div class="chart-card glass" style="margin-bottom:var(--s5)">
+      <div class="chart-head">
+        <div>
+          <h3>When the homes actually reach us</h3>
+          <p class="small" style="margin:8px 0 0;max-width:60ch">Only 62 homes arrive in 2026, so this year is about getting the operation right rather than the income. The weight sits in 2028 and 2029, which is also when the money starts to look like a real portfolio.</p>
+        </div>
+        <div class="legend">
+          <span class="li"><span class="bar-key"></span>Homes that year</span>
+          <span class="li"><span class="line-key"></span>Running total</span>
+        </div>
+      </div>
+      <svg class="chart" id="pipelineChart" viewBox="0 0 760 320" role="img" aria-label="Homes handed over each year from 2026 to 2029 with a running total"></svg>
+      <p class="hint" style="margin:var(--s4) 0 0">Hover a bar for the detail. Click one to filter the table to that year.</p>
+    </div>
+
+    <div class="table-card glass">
+      <div class="row head" id="tableHead"></div>
+      <div id="siteRows"></div>
+    </div>
+    <p class="tiny" style="margin-top:var(--s4);max-width:80ch">One thing to be straight about. Hampton Beach and Burleyfields are named in the Lloyds Living announcement. The other twelve locations are my own split of the six counties that were announced, so I could plan the pipeline site by site. Every row tells you which is which. The 980 homes, the 14 developments, the 255 in East Anglia and the EPC B minimum are all confirmed.</p>
+  </div>
+</div>
+
+<!-- ======================= MARKET NOTE ======================= -->
+<div class="view" id="view-market" role="tabpanel" aria-labelledby="tab-market">
+  <div class="wrap hero" style="padding-bottom:var(--s6)">
+    <p class="eyebrow">Research note, August 2026</p>
+    <h1 style="max-width:17ch">Who else is doing this, and are they doing it to us.</h1>
+    <p class="lede">We are past 8,850 homes and aiming at 50,000 by 2030. That puts us in the same conversation as Grainger, Legal and General and M&amp;G. The useful thing is that we are not really doing the same job they are, and I think that difference is worth understanding before anyone reads across their numbers to ours.</p>
+  </div>
+
+  <section class="showcase" style="margin-top:var(--s6)">
+    <div class="wrap">
+      <div class="big-figure">
+        <div class="fig">2.2<sup>bn</sup></div>
+        <div>
+          <p class="eyebrow">Savills, second quarter 2026</p>
+          <h3 style="font-size:clamp(1.2rem,2.2vw,1.7rem);letter-spacing:-.03em;max-width:24ch">Pounds put into UK build to rent in one quarter, the strongest second quarter on record.</h3>
+          <p class="small" style="margin-top:var(--s4);max-width:56ch">Knight Frank counts 26,407 operating single family rental homes in the UK, about 16 percent of all build to rent stock. So a record amount of money is arriving into a corner of the market that is still small. That is good for the value of what we already own and harder for what we want to buy next.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap" style="padding-bottom:var(--s8)">
+    <div class="note-grid">
+      <div>
+        <div class="note-section">
+          <h3>The short version</h3>
+          <p class="body-copy">Grainger owns more homes than any other listed landlord in the UK and almost all of them are flats in city centres. Legal and General is spread across several housing tenures at once. M&amp;G invests in the sector rather than running homes day to day. We are the one building a large book of family houses in suburbs and market towns, managed by our own team. Four businesses in the same industry doing four different jobs.</p>
+          <div class="takeaway">
+            <span class="tag">If you remember one thing</span>
+            <p>Our closest match on strategy is the suburban arm of Legal and General. Our closest match on size is Grainger. Nobody is doing both at our speed.</p>
+          </div>
+        </div>
+
+        <div class="note-section">
+          <h3>How the four of us compare on size</h3>
+          <p class="body-copy" style="margin-bottom:var(--s5)">Hover a bar for the detail. The pale bar is where we have said we want to be by 2030, and it is worth seeing it next to where everyone is today.</p>
+          <div class="chart-card glass">
+            <svg class="chart" id="peerChart" viewBox="0 0 760 300" role="img" aria-label="Homes owned by Lloyds Living, Grainger and Legal and General compared with the 2030 target"></svg>
+          </div>
+        </div>
+
+        <div class="note-section">
+          <h3>Grainger</h3>
+          <p class="body-copy">A FTSE 250 business, founded in Newcastle in 1912, and a real estate investment trust since 2025. It reports over 11,200 rental homes and a secured pipeline of just under 4,000 more worth around 1.2 billion pounds. The stock is mostly purpose built blocks in Manchester, Birmingham, Leeds and London, with on site teams and shared lounges and gyms.</p>
+          <p class="body-copy">What that means for us is simple. We compete with Grainger for money and for good operations people. We almost never compete for the same tenant. A family looking for a three bed house in Hucknall is not weighing that up against a studio in central Manchester.</p>
+        </div>
+
+        <div class="note-section">
+          <h3>Legal and General</h3>
+          <p class="body-copy">Legal and General has put more than 3 billion pounds into build to rent and reports over 10,000 rental homes across its residential platform. Its suburban arm started at the end of 2020 and does the closest thing to what we do, buying family houses from housebuilders such as Miller Homes and letting them as whole communities. It has also raised debt specifically against a suburban pipeline of around 1,000 homes.</p>
+          <p class="body-copy">This is the one to watch. When a housebuilder has a portfolio of finished houses to sell, we are usually bidding against them. Our advantage is the depth of the Barratt Redrow relationship, now over 3,000 homes across three separate deals, which makes us an easy company to come back to.</p>
+        </div>
+
+        <div class="note-section">
+          <h3>M&amp;G Real Estate</h3>
+          <p class="body-copy">M&amp;G is an investor first. It buys into build to rent schemes and, in research published this year, argues that suburban family rental performs better than blocks of flats because the homes sit empty less often and cost less to keep up over time. That is the same argument our business case rests on, which is handy.</p>
+          <div class="takeaway">
+            <span class="tag">Useful for us</span>
+            <p>When someone challenges the yield on family houses against flats, we can point at published M&amp;G research rather than only at our own model.</p>
+          </div>
+        </div>
+
+        <div class="note-section">
+          <h3>The rules changed too</h3>
+          <p class="body-copy">The Renters Rights Act removes no fault evictions from May 2026, moves tenancies to open ended agreements and limits rent increases to once a year. For a landlord that already plans on long tenancies and one review a year, this is mainly a cost of process rather than a hit to income. It does raise the bar on how well you have to run the operation, which quietly favours the bigger professional owners.</p>
+          <div class="takeaway">
+            <span class="tag">If you remember one thing</span>
+            <p>A record quarter of investment plus a small single family base means more buyers chasing the same housebuilder stock. Our contracted pipeline out to 2029 is worth more now than it looked on the day it was signed.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="note-side glass">
+        <h4 style="margin-bottom:var(--s3)">Where this comes from</h4>
+        <ol>
+          <li>Lloyds Living announcement, 980 homes from Barratt Redrow, July 2026</li>
+          <li>Grainger plc corporate site and half year results, May 2026</li>
+          <li>Legal and General suburban build to rent, company site</li>
+          <li>M&amp;G Investments, single family housing research, 2026</li>
+          <li>Savills, quarterly build to rent investment, second quarter 2026</li>
+          <li>Knight Frank, single family rental stock count</li>
+        </ol>
+        <p class="tiny" style="margin-top:var(--s4)">All public material. No internal Lloyds Living figures are used anywhere in this note.</p>
+      </aside>
+    </div>
+
+    <h3 style="margin-bottom:var(--s4)">Side by side</h3>
+    <div class="glass scroll-x" style="padding:var(--s2) var(--s4);border-radius:var(--r3)">
+      <table class="cmp">
+        <thead><tr><th>Landlord</th><th>Homes owned</th><th>Pipeline</th><th>Main product</th><th>Who manages</th></tr></thead>
+        <tbody>
+          <tr class="us"><td class="name">Lloyds Living</td><td>Over 8,850</td><td>Target of 50,000 homes by 2030</td><td>Family houses in suburbs, plus shared ownership</td><td>Own team, in house</td></tr>
+          <tr><td class="name">Grainger</td><td>Over 11,200</td><td>3,997 secured, about 1.2 billion pounds</td><td>Purpose built flats in city centres</td><td>Own team, on site</td></tr>
+          <tr><td class="name">Legal and General</td><td>Over 10,000 across the platform</td><td>About 1,000 suburban homes financed</td><td>Mixed, including suburban houses</td><td>Own team and partners</td></tr>
+          <tr><td class="name">M&amp;G Real Estate</td><td>Not disclosed as a single figure</td><td>Fund led, deal by deal</td><td>Investment into build to rent schemes</td><td>Third party operators</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tiny" style="margin-top:var(--s4)">These are the latest figures each company has published as at August 2026. They are not measured on the same basis, so read the shape of it rather than the decimal point.</p>
+  </div>
+</div>
+
+<!-- ======================= COMMITTEE PACK ======================= -->
+<div class="view" id="view-pack" role="tabpanel" aria-labelledby="tab-pack">
+  <div class="wrap" style="padding-top:var(--s7);padding-bottom:var(--s4)">
+    <p class="lede" style="max-width:70ch">This is the page I would put in front of the mobilisation committee. One side of paper, the whole deal, and the three or four things I actually need a decision on. It reads live off the model, so if the assumptions on the financial model tab move, this moves with them.</p>
+  </div>
+  <div class="wrap" style="padding-bottom:var(--s8)">
+    <div class="slide">
+      <div class="slide-head">
+        <div>
+          <p class="eyebrow" style="margin-bottom:8px">Mobilisation committee, September 2026</p>
+          <h2>Barratt Redrow portfolio, 980 homes</h2>
+          <p class="small" style="margin:8px 0 0">Investment and mobilisation summary, one page</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start">
+          <span class="chip model"><span class="dot"></span>Money figures researched and built by me</span>
+          <span class="tiny">Prepared by N. Vatnal</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="panel" style="margin-bottom:var(--s4)">
+            <h4>What we have bought</h4>
+            <p class="small" style="margin-bottom:var(--s3)">One, two, three and four bed houses across 14 developments in Nottinghamshire, Merseyside, East Anglia, the West Midlands, Cambridgeshire and Northamptonshire. They reach us between autumn 2026 and the end of 2029. Every home is EPC B or better, many have air source heat pumps, and our own team manages all of them.</p>
+            <div id="packOverview"></div>
+          </div>
+          <div class="panel">
+            <h4>How I have set the rent</h4>
+            <p class="small" style="margin-bottom:var(--s3)">I start with what the same size of house lets for locally, second hand. Then I add a small amount for a new build with low running costs, a private garden and a landlord who answers the phone. I hold us below the top of the local range on purpose, because letting quickly is worth more than the last twenty pounds a month.</p>
+            <div id="packRent"></div>
+          </div>
+        </div>
+        <div>
+          <div class="panel" style="margin-bottom:var(--s4)">
+            <h4>Budget and return</h4>
+            <div id="packBudget"></div>
+            <p class="hint" id="packAssump" style="margin:var(--s3) 0 0"></p>
+          </div>
+          <div class="panel">
+            <h4>What could go wrong</h4>
+            <p class="hint" style="margin:0 0 var(--s3)">Click any risk to see what we do about it.</p>
+            <div id="packRisks"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <h4 style="display:flex;align-items:center;gap:8px"><span style="width:5px;height:5px;border-radius:50%;background:var(--ink)"></span>How the next three years run</h4>
+        <div class="tl-track">
+          <div class="tl-step"><span class="when">Jul 2026</span><span class="what">Contracts signed with Barratt Redrow</span></div>
+          <div class="tl-step"><span class="when">Sep 2026</span><span class="what">Mobilisation plan signed off and the lettings team briefed</span></div>
+          <div class="tl-step"><span class="when">Oct 2026</span><span class="what">Marketing opens six weeks ahead of the first handover</span></div>
+          <div class="tl-step future"><span class="when">Nov 2026</span><span class="what">First families move in at Hampton Beach and Burleyfields</span></div>
+          <div class="tl-step future"><span class="when">2027</span><span class="what">East Anglia opens as a new operating region for us</span></div>
+          <div class="tl-step future"><span class="when">2029</span><span class="what">Final handovers and the portfolio is complete</span></div>
+        </div>
+      </div>
+
+      <p class="tiny" style="margin-top:var(--s6);border-top:1px solid var(--hairline-soft);padding-top:var(--s4)">What I need from the committee. Approve the mobilisation budget, agree the way we set rents, and sign off the void assumption I have used in the model.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= FINANCIAL MODEL ======================= -->
+<div class="view" id="view-model" role="tabpanel" aria-labelledby="tab-model">
+  <div class="wrap" style="padding-top:var(--s7);padding-bottom:var(--s6)">
+    <p class="eyebrow">Portfolio financial model, version 0.4</p>
+    <h2 style="max-width:22ch">The numbers behind everything else</h2>
+    <p class="lede" style="margin-top:var(--s4)">Five sheets. The asset register holds the stock, the rent sheet holds the price, the budget sheet turns those two into a yield, and the last two show what happens when the world does not behave. Nothing is typed in. Every figure is calculated, and you can see the working with the formulas button.</p>
+    <p class="lede" style="margin-top:var(--s4)">The two things I get asked about most are voids and rent growth, so I have put them on sliders. Move them and watch the whole model and the committee pack move with you.</p>
+  </div>
+
+  <div class="wrap" style="padding-bottom:var(--s8)">
+    <div class="sheet glass-solid">
+      <div class="sheet-bar">
+        <span class="sheet-name">LL_BR980_portfolio_model_v0.4</span>
+        <button class="btn btn-fx" id="fxToggle" type="button" aria-pressed="false">Show formulas</button>
+        <div class="sheet-tabs" role="tablist" aria-label="Model sheets">
+          <button class="stab" role="tab" aria-selected="true" data-sheet="register">Asset register</button>
+          <button class="stab" role="tab" aria-selected="false" data-sheet="rents">Rent assumptions</button>
+          <button class="stab" role="tab" aria-selected="false" data-sheet="budget">Budget and yield</button>
+          <button class="stab" role="tab" aria-selected="false" data-sheet="occupancy">Occupancy and arrears</button>
+          <button class="stab" role="tab" aria-selected="false" data-sheet="sens">Sensitivity</button>
+        </div>
+      </div>
+
+      <div class="sheet-body">
+        <div class="assump">
+          <div class="slider">
+            <div class="top"><span class="nm">Void rate</span><span class="val" id="voidVal">4.5%</span></div>
+            <input type="range" id="voidSlider" min="2" max="7.5" step="0.1" value="4.5" aria-label="Void rate">
+            <span class="hint">The share of the year an average home sits empty between tenants.</span>
+          </div>
+          <div class="slider">
+            <div class="top"><span class="nm">Rent growth</span><span class="val" id="growthVal">0.0%</span></div>
+            <input type="range" id="growthSlider" min="0" max="4.5" step="0.1" value="0" aria-label="Rent growth">
+            <span class="hint">One year of growth applied to the rents on the rent sheet.</span>
+          </div>
+          <div class="outwrap">
+            <span class="nm" style="font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700">Net yield</span>
+            <span class="out" id="liveYield">4.59%</span>
+            <button class="btn" id="assumpReset" type="button" style="align-self:flex-start;margin-top:6px">Back to base case</button>
+          </div>
+        </div>
+
+        <div class="sheet-pane is-active" id="pane-register">
+          <div style="margin-bottom:var(--s5)">
+            <h3>Asset register</h3>
+            <p class="small">Every site, the capital it takes and the rent it should make once it is full. Click a column heading to sort. Cost per home is a modelled regional average.</p>
+          </div>
+          <div class="scroll-x"><table class="grid" id="tblRegister"></table></div>
+          <div class="fx" data-fx>
+            <p class="fx-title">Formulas on this sheet</p>
+            <ul>
+              <li><span class="lbl">Homes on a site</span><code>= 1bed + 2bed + 3bed + 4bed</code></li>
+              <li><span class="lbl">Capital</span><code>= Homes &times; Cost per home</code></li>
+              <li><span class="lbl">Gross rent a year</span><code>= SUM(units by bed &times; monthly rent by bed) &times; 12</code></li>
+              <li><span class="lbl">Gross yield on cost</span><code>= Gross rent a year / Capital</code></li>
+              <li><span class="lbl">Portfolio cost per home</span><code>= SUM(Capital) / SUM(Homes)</code></li>
+            </ul>
+          </div>
+          <p class="sheet-note">Gross rent here assumes every home is let. Nothing is taken off for empty homes or missed payments yet, that happens on the budget sheet.</p>
+        </div>
+
+        <div class="sheet-pane" id="pane-rents">
+          <div style="margin-bottom:var(--s5)">
+            <h3>Rent assumptions by region</h3>
+            <p class="small">Monthly asking rents, set from local evidence for the same size of house with a small premium for a new build in our management. The slider above applies growth to all of them at once.</p>
+          </div>
+          <div class="scroll-x"><table class="grid" id="tblRents"></table></div>
+          <div class="fx" data-fx>
+            <p class="fx-title">Formulas on this sheet</p>
+            <ul>
+              <li><span class="lbl">Homes in a region</span><code>= SUMIF(Region, this region, Homes)</code></li>
+              <li><span class="lbl">Gross rent a year</span><code>= SUMIF(Region, this region, Site gross rent)</code></li>
+              <li><span class="lbl">Weighted average rent</span><code>= Gross rent a year / Homes / 12</code></li>
+              <li><span class="lbl">Rent with growth applied</span><code>= Base rent &times; (1 + growth)</code></li>
+            </ul>
+          </div>
+          <p class="sheet-note">Rents get reviewed once a year, which is what the Renters Rights Act allows. Merseyside is the cheapest region in the book and Cambridgeshire the dearest, which is roughly a three hundred pound a month gap on a three bed.</p>
+        </div>
+
+        <div class="sheet-pane" id="pane-budget">
+          <div style="margin-bottom:var(--s5)">
+            <h3>Budget and stabilised yield</h3>
+            <p class="small">The whole portfolio once it is full and settled, so 2030 in practice. Costs are annual, and shown per home as well because that is how we actually control them.</p>
+          </div>
+          <div class="scroll-x"><table class="grid" id="tblBudget"></table></div>
+          <div class="fx" data-fx>
+            <p class="fx-title">Formulas on this sheet</p>
+            <ul>
+              <li><span class="lbl">Void allowance</span><code>= Gross rent &times; void rate</code></li>
+              <li><span class="lbl">Bad debt</span><code>= Gross rent &times; 0.8%</code></li>
+              <li><span class="lbl">Net rent collected</span><code>= Gross rent &times; (1 &minus; void rate &minus; 0.8%)</code></li>
+              <li><span class="lbl">Management cost</span><code>= Gross rent &times; 3.5%</code></li>
+              <li><span class="lbl">Per home costs</span><code>= Homes &times; (550 + 185 + 140 + 95 + 75)</code></li>
+              <li><span class="lbl">Net operating income</span><code>= Net rent collected &minus; Management &minus; Per home costs</code></li>
+              <li><span class="lbl">Total capital</span><code>= Purchase price &times; (1 + 1.8%)</code></li>
+              <li><span class="lbl">Gross yield</span><code>= Gross rent / Total capital</code></li>
+              <li><span class="lbl">Net stabilised yield</span><code>= Net operating income / Total capital</code></li>
+            </ul>
+          </div>
+          <p class="sheet-note">Management is the internal recharge for our own team. There is no letting agent fee in here because we do not use one, which is worth about half a million pounds a year against an outsourced model.</p>
+        </div>
+
+        <div class="sheet-pane" id="pane-occupancy">
+          <div style="margin-bottom:var(--s5)">
+            <h3>Occupancy and arrears</h3>
+            <p class="small">Twelve months on the 598 homes we bought from Barratt Redrow in 2025. It is the closest thing we have to a preview of how the new portfolio behaves once it lets up. Hover the chart for any month.</p>
+          </div>
+          <div class="chart-card" style="padding:var(--s5) 0 var(--s4)">
+            <svg class="chart" id="occChart" viewBox="0 0 760 260" role="img" aria-label="Occupancy of the 598 home comparator over twelve months"></svg>
+          </div>
+          <div class="scroll-x"><table class="grid" id="tblOcc"></table></div>
+          <div class="fx" data-fx>
+            <p class="fx-title">Formulas on this sheet</p>
+            <ul>
+              <li><span class="lbl">Occupancy</span><code>= Homes let / 598</code></li>
+              <li><span class="lbl">Rent due</span><code>= Homes let &times; Average rent</code></li>
+              <li><span class="lbl">Rent collected</span><code>= Rent due &times; Collection rate</code></li>
+              <li><span class="lbl">Arrears</span><code>= Rent due &times; Arrears share</code></li>
+              <li><span class="lbl">Twelve month collection</span><code>= SUM(Rent collected) / SUM(Rent due)</code></li>
+            </ul>
+          </div>
+          <p class="sheet-note">It took about nine months to get from handover to 97 percent let, and collection improved as the estates settled. That is the shape I have assumed for every new site in the pipeline, which is why the mobilisation spend is front loaded.</p>
+        </div>
+
+        <div class="sheet-pane" id="pane-sens">
+          <div style="margin-bottom:var(--s5)">
+            <h3>Sensitivity</h3>
+            <p class="small">Net stabilised yield as voids and rent growth move. Click any cell to set the sliders to it and take the rest of the model with you. The outlined cell is wherever the sliders are now.</p>
+          </div>
+          <div class="scroll-x"><table class="grid sens" id="tblSens"></table></div>
+          <div class="fx" data-fx>
+            <p class="fx-title">Formulas on this sheet</p>
+            <ul>
+              <li><span class="lbl">Grown gross rent</span><code>= Gross rent &times; (1 + rent growth)</code></li>
+              <li><span class="lbl">Income losses</span><code>= Grown gross rent &times; (void rate + 0.8% + 3.5%)</code></li>
+              <li><span class="lbl">Net operating income</span><code>= Grown gross rent &minus; Income losses &minus; Per home costs</code></li>
+              <li><span class="lbl">Cell value</span><code>= Net operating income / Total capital</code></li>
+            </ul>
+          </div>
+          <p class="sheet-note">Read it as a range, not a forecast. The point I want people to take away is that voids move the answer more than rent growth does in the early years. That is the argument for spending money on mobilisation rather than hoping the market carries us.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div>
+      <p class="who">Prepared by Nishant Vatnal, Analyst</p>
+      <p class="small">Portfolio facts are drawn from public Lloyds Living announcements.</p>
+    </div>
+    <p class="tiny">A personal portfolio project. Not a Lloyds Banking Group publication.</p>
+  </div>
+</footer>
+
+</main>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------------- data ---------------- */
+var REGIONS = {
+  cambsNorthants:{label:"Cambridgeshire and Northamptonshire", short:"Cambs and Northants"},
+  eastAnglia:{label:"East Anglia", short:"East Anglia"},
+  notts:{label:"Nottinghamshire", short:"Nottinghamshire"},
+  merseyside:{label:"Merseyside", short:"Merseyside"},
+  westMids:{label:"West Midlands", short:"West Midlands"}
+};
+var RENT = {
+  cambsNorthants:[850,1025,1250,1495],
+  eastAnglia:[795,950,1175,1425],
+  notts:[775,925,1110,1325],
+  merseyside:[725,875,1050,1250],
+  westMids:[775,950,1150,1375]
+};
+var COST = { cambsNorthants:268000, eastAnglia:252000, notts:222000, merseyside:205000, westMids:228000 };
+
+var SITES = [
+  {name:"Hampton Beach, Peterborough", area:"Peterborough", region:"cambsNorthants", homes:96, mix:[10,28,42,16], epc:"A", first:"Autumn 2026", last:"H2 2027", years:{2026:34,2027:62}, confirmed:true},
+  {name:"Wellingborough", area:"Northamptonshire", region:"cambsNorthants", homes:74, mix:[6,20,34,14], epc:"B", first:"H1 2027", last:"H1 2028", years:{2027:40,2028:34}, confirmed:false},
+  {name:"Kettering", area:"Northamptonshire", region:"cambsNorthants", homes:62, mix:[4,17,28,13], epc:"B", first:"H2 2028", last:"H1 2029", years:{2028:36,2029:26}, confirmed:false},
+  {name:"Hucknall", area:"Nottinghamshire", region:"notts", homes:68, mix:[6,19,30,13], epc:"B", first:"H2 2027", last:"H2 2028", years:{2027:38,2028:30}, confirmed:false},
+  {name:"Newark", area:"Nottinghamshire", region:"notts", homes:58, mix:[4,15,27,12], epc:"B", first:"H2 2028", last:"H1 2029", years:{2028:30,2029:28}, confirmed:false},
+  {name:"Bingham", area:"Nottinghamshire", region:"notts", homes:47, mix:[3,12,22,10], epc:"B", first:"H1 2029", last:"H2 2029", years:{2029:47}, confirmed:false},
+  {name:"St Helens", area:"Merseyside", region:"merseyside", homes:66, mix:[6,20,30,10], epc:"A", first:"H2 2027", last:"H2 2028", years:{2027:30,2028:36}, confirmed:false},
+  {name:"Prescot", area:"Merseyside", region:"merseyside", homes:55, mix:[5,16,25,9], epc:"B", first:"H1 2028", last:"H1 2029", years:{2028:25,2029:30}, confirmed:false},
+  {name:"Kirkby", area:"Merseyside", region:"merseyside", homes:44, mix:[4,13,20,7], epc:"B", first:"H1 2029", last:"H2 2029", years:{2029:44}, confirmed:false},
+  {name:"Burleyfields, Stafford", area:"Staffordshire", region:"westMids", homes:88, mix:[7,23,40,18], epc:"A", first:"Autumn 2026", last:"H2 2027", years:{2026:28,2027:60}, confirmed:true},
+  {name:"Tamworth", area:"Staffordshire", region:"westMids", homes:40, mix:[3,11,18,8], epc:"B", first:"H1 2028", last:"H2 2028", years:{2028:40}, confirmed:false},
+  {name:"Rugeley", area:"Staffordshire", region:"westMids", homes:27, mix:[2,7,12,6], epc:"B", first:"H1 2029", last:"H2 2029", years:{2029:27}, confirmed:false},
+  {name:"Bury St Edmunds", area:"Suffolk", region:"eastAnglia", homes:138, mix:[11,37,62,28], epc:"A", first:"H2 2027", last:"H2 2029", years:{2027:48,2028:52,2029:38}, confirmed:false},
+  {name:"Thetford", area:"Norfolk", region:"eastAnglia", homes:117, mix:[9,31,53,24], epc:"A", first:"H1 2028", last:"H2 2029", years:{2028:55,2029:62}, confirmed:false}
+];
+
+var BED_LABELS = ["1 bed","2 bed","3 bed","4 bed"];
+var BED_COLOURS = ["#0C0D0E","#4A4F54","#989EA4","#D8DBDD"];
+var YEARS = [2026,2027,2028,2029];
+
+var OPEX = { voidRate:0.045, badDebt:0.008, managementPct:0.035,
+  repairsPerHome:550, insurancePerHome:185, estatePerHome:140,
+  lettingPerHome:95, compliancePerHome:75, acquisitionCostsPct:0.018 };
+
+var COHORT_HOMES = 598;
+var OCC_MONTHS = [
+  {m:"Sep 2025", let:512, rent:1065, coll:0.976, arrPct:0.024},
+  {m:"Oct 2025", let:528, rent:1065, coll:0.979, arrPct:0.022},
+  {m:"Nov 2025", let:541, rent:1068, coll:0.981, arrPct:0.021},
+  {m:"Dec 2025", let:549, rent:1068, coll:0.974, arrPct:0.026},
+  {m:"Jan 2026", let:556, rent:1072, coll:0.983, arrPct:0.019},
+  {m:"Feb 2026", let:562, rent:1072, coll:0.986, arrPct:0.016},
+  {m:"Mar 2026", let:569, rent:1078, coll:0.988, arrPct:0.014},
+  {m:"Apr 2026", let:573, rent:1085, coll:0.987, arrPct:0.015},
+  {m:"May 2026", let:578, rent:1085, coll:0.990, arrPct:0.012},
+  {m:"Jun 2026", let:581, rent:1089, coll:0.991, arrPct:0.011},
+  {m:"Jul 2026", let:584, rent:1092, coll:0.992, arrPct:0.010},
+  {m:"Aug 2026", let:586, rent:1092, coll:0.992, arrPct:0.010}
+];
+
+/* ---------------- helpers ---------------- */
+var nf = function(n){ return Math.round(n).toLocaleString("en-GB"); };
+var money0 = function(n){ return "\u00A3" + nf(n); };
+var moneyM = function(n){ return "\u00A3" + (n/1e6).toFixed(1) + "m"; };
+var pct = function(n,d){ return (n*100).toFixed(d===undefined?1:d) + "%"; };
+var el = function(id){ return document.getElementById(id); };
+var esc = function(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); };
+
+function siteGrossRent(site, growth){
+  var g = growth || 0, r = RENT[site.region], t = 0;
+  for(var i=0;i<4;i++){ t += site.mix[i] * r[i] * (1+g) * 12; }
+  return t;
+}
+function siteCost(site){ return site.homes * COST[site.region]; }
+
+var TOTAL_HOMES = SITES.reduce(function(a,s){return a+s.homes;},0);
+var BASE_GROSS  = SITES.reduce(function(a,s){return a+siteGrossRent(s);},0);
+var TOTAL_COST  = SITES.reduce(function(a,s){return a+siteCost(s);},0);
+var TOTAL_CAPITAL = TOTAL_COST * (1 + OPEX.acquisitionCostsPct);
+var PER_HOME_COSTS = OPEX.repairsPerHome + OPEX.insurancePerHome + OPEX.estatePerHome + OPEX.lettingPerHome + OPEX.compliancePerHome;
+
+function noiFrom(gross, homes, voidRate){
+  var v = voidRate === undefined ? OPEX.voidRate : voidRate;
+  return gross - (gross * (v + OPEX.badDebt + OPEX.managementPct) + homes * PER_HOME_COSTS);
+}
+
+/* shared model state */
+var MODEL = { voidRate:0.045, growth:0 };
+function grownGross(){ return BASE_GROSS * (1 + MODEL.growth); }
+
+/* ---------------- tooltip ---------------- */
+var tip = el("tip");
+function showTip(evt, html){
+  tip.innerHTML = html;
+  tip.classList.add("show");
+  var x = evt.clientX, y = evt.clientY;
+  tip.style.left = Math.max(90, Math.min(window.innerWidth - 90, x)) + "px";
+  tip.style.top = Math.max(70, y - 8) + "px";
+}
+function hideTip(){ tip.classList.remove("show"); }
+document.addEventListener("scroll", hideTip, true);
+
+/* ---------------- view switching ---------------- */
+var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+function showView(key){
+  tabs.forEach(function(t){
+    var on = t.dataset.view === key;
+    t.setAttribute("aria-selected", on ? "true" : "false");
+    el("view-" + t.dataset.view).classList.toggle("is-active", on);
+  });
+  hideTip();
+  window.scrollTo(0,0);
+  if(key === "dash"){ requestAnimationFrame(renderDash); }
+  if(key === "market"){ requestAnimationFrame(drawPeerChart); }
+  if(key === "model"){ requestAnimationFrame(drawOccChart); }
+}
+tabs.forEach(function(t,i){
+  t.addEventListener("click", function(){ showView(t.dataset.view); });
+  t.addEventListener("keydown", function(e){
+    if(e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    e.preventDefault();
+    var n = (i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length;
+    tabs[n].focus(); showView(tabs[n].dataset.view);
+  });
+});
+
+/* ================= DASHBOARD ================= */
+var STATE = { region:"all", type:null, year:null, sort:"first", dir:1, open:null };
+var fRegion = el("fRegion"), fType = el("fType");
+
+(function(){
+  var o = document.createElement("option"); o.value="all"; o.textContent="All regions"; fRegion.appendChild(o);
+  Object.keys(REGIONS).forEach(function(k){
+    var x = document.createElement("option"); x.value=k; x.textContent=REGIONS[k].label; fRegion.appendChild(x);
+  });
+})();
+
+function homesShown(s){ return STATE.type === null ? s.homes : s.mix[STATE.type]; }
+
+function selected(){
+  var out = SITES.filter(function(s){
+    if(STATE.region !== "all" && s.region !== STATE.region) return false;
+    if(STATE.type !== null && s.mix[STATE.type] === 0) return false;
+    if(STATE.year !== null && !s.years[STATE.year]) return false;
+    return true;
+  });
+  var dir = STATE.dir, key = STATE.sort;
+  var order = {"Autumn 2026":0,"H1 2027":1,"H2 2027":2,"H1 2028":3,"H2 2028":4,"H1 2029":5,"H2 2029":6};
+  out.sort(function(a,b){
+    var A,B;
+    if(key === "name"){ A=a.name; B=b.name; }
+    else if(key === "region"){ A=REGIONS[a.region].short; B=REGIONS[b.region].short; }
+    else if(key === "homes"){ A=homesShown(a); B=homesShown(b); }
+    else if(key === "epc"){ A=a.epc; B=b.epc; }
+    else { A=order[a.first]; B=order[b.first]; }
+    if(A < B) return -1*dir;
+    if(A > B) return 1*dir;
+    return 0;
+  });
+  return out;
+}
+
+function yearTotals(sites){
+  var out = [0,0,0,0];
+  sites.forEach(function(s){
+    var scale = STATE.type === null ? 1 : (s.mix[STATE.type] / s.homes);
+    YEARS.forEach(function(y,i){ out[i] += (s.years[y] || 0) * scale; });
+  });
+  return out.map(function(v){ return Math.round(v); });
+}
+
+function renderKpis(sites){
+  var homes = sites.reduce(function(a,s){ return a + homesShown(s); }, 0);
+  var yt = yearTotals(sites);
+  var epcA = sites.filter(function(s){ return s.epc === "A"; }).reduce(function(a,s){ return a + homesShown(s); }, 0);
+  var gross = sites.reduce(function(a,s){
+    if(STATE.type === null) return a + siteGrossRent(s);
+    return a + s.mix[STATE.type] * RENT[s.region][STATE.type] * 12;
+  }, 0);
+  var cards = [
+    {l:"Homes in view", v:nf(homes), u:"", f: sites.length + " of 14 sites"},
+    {l:"With us by end 2026", v:nf(yt[0]), u:"homes", f:"First lettings from autumn 2026"},
+    {l:"Rent a year when full", v:moneyM(gross), u:"", f:"Before voids and running costs"},
+    {l:"Energy rating", v:"B", u:"or better", f: (homes ? pct(epcA/homes,0) : "0%") + " modelled at EPC A"}
+  ];
+  el("kpiGrid").innerHTML = cards.map(function(c){
+    return '<div class="kpi glass"><div class="label">'+c.l+'</div>'+
+      '<div class="value">'+c.v+(c.u?'<span class="unit">'+c.u+'</span>':'')+'</div>'+
+      '<div class="foot">'+c.f+'</div></div>';
+  }).join("");
+}
+
+function renderMix(sites){
+  var counts = [0,0,0,0];
+  sites.forEach(function(s){ for(var i=0;i<4;i++){ counts[i] += s.mix[i]; } });
+  var totalAll = counts.reduce(function(a,b){return a+b;},0) || 1;
+  el("mixRail").innerHTML = counts.map(function(c,i){
+    var active = STATE.type === i;
+    var flex = STATE.type === null ? c : (active ? 1 : 0.001);
+    return '<button class="rail-seg" data-bed="'+i+'" aria-pressed="'+(active?"true":"false")+'" '+
+      'aria-label="'+BED_LABELS[i]+', '+c+' homes" style="flex:'+flex+' 1 0;background:'+BED_COLOURS[i]+'"></button>';
+  }).join("");
+  el("mixKey").innerHTML = counts.map(function(c,i){
+    return '<span class="k"><span class="swatch" style="background:'+BED_COLOURS[i]+'"></span>'+
+      BED_LABELS[i]+' <b>'+nf(c)+'</b> <span class="tiny">'+pct(c/totalAll,0)+'</span></span>';
+  }).join("");
+
+  Array.prototype.forEach.call(el("mixRail").children, function(seg){
+    var i = +seg.dataset.bed;
+    var count = counts[i];
+    seg.addEventListener("click", function(){
+      STATE.type = (STATE.type === i) ? null : i;
+      fType.value = STATE.type === null ? "all" : String(STATE.type);
+      STATE.open = null; renderDash();
+    });
+    seg.addEventListener("mousemove", function(e){
+      showTip(e, "<b>"+BED_LABELS[i]+"</b><span class='tl'>"+nf(count)+" homes, "+pct(count/totalAll,0)+" of what is in view</span>");
+    });
+    seg.addEventListener("mouseleave", hideTip);
+  });
+}
+
+function drawPipeline(sites){
+  var data = yearTotals(sites);
+  var W=760,H=320,padL=54,padR=46,padT=20,padB=46;
+  var plotW=W-padL-padR, plotH=H-padT-padB;
+  var scaleMax = Math.max(50, Math.ceil(Math.max.apply(null,data)/50)*50);
+  var cum=[],run=0; data.forEach(function(v){ run+=v; cum.push(run); });
+  var cumMax = Math.max(1, run);
+  var slot = plotW/YEARS.length, barW = Math.min(96, slot*0.44);
+  var s="";
+  for(var g=0; g<=4; g++){
+    var val = scaleMax*g/4, y = padT+plotH-(val/scaleMax)*plotH;
+    s += '<line x1="'+padL+'" y1="'+y+'" x2="'+(W-padR)+'" y2="'+y+'" stroke="rgba(12,13,14,0.08)"/>';
+    s += '<text x="'+(padL-12)+'" y="'+(y+4)+'" text-anchor="end" font-size="11" fill="#9BA1A7" font-family="ui-monospace,Menlo,monospace">'+nf(val)+'</text>';
+  }
+  YEARS.forEach(function(yr,i){
+    var cx = padL+slot*i+slot/2;
+    var h = (data[i]/scaleMax)*plotH, y = padT+plotH-h;
+    var on = STATE.year === yr;
+    s += '<g class="hot'+(on?" on":"")+'" data-year="'+yr+'" tabindex="0" role="button" aria-label="'+yr+', '+data[i]+' homes">'+
+      '<rect x="'+(cx-slot/2)+'" y="'+padT+'" width="'+slot+'" height="'+plotH+'" fill="transparent"/>'+
+      '<rect class="bar" x="'+(cx-barW/2)+'" y="'+y+'" width="'+barW+'" height="'+Math.max(h,1)+'" rx="6" fill="'+(on?"#000":"#17181A")+'" opacity="'+(on?1:0.88)+'"/>'+
+      '<text x="'+cx+'" y="'+(y-10)+'" text-anchor="middle" font-size="13" font-weight="700" fill="#0C0D0E" font-family="ui-monospace,Menlo,monospace">'+nf(data[i])+'</text>'+
+      '<text x="'+cx+'" y="'+(padT+plotH+24)+'" text-anchor="middle" font-size="12" fill="'+(on?"#0C0D0E":"#6E7379")+'" font-weight="'+(on?"700":"400")+'">'+yr+'</text>'+
+      '</g>';
+  });
+  var pts = cum.map(function(v,i){ return [padL+slot*i+slot/2, padT+plotH-(v/cumMax)*plotH]; });
+  s += '<polyline points="'+pts.map(function(p){return p[0]+","+p[1];}).join(" ")+'" fill="none" stroke="#6E7379" stroke-width="1.5" stroke-linejoin="round"/>';
+  pts.forEach(function(p,i){
+    s += '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3.5" fill="#fff" stroke="#6E7379" stroke-width="1.5"/>';
+    if(i === pts.length-1){
+      s += '<text x="'+(p[0]+12)+'" y="'+(p[1]+4)+'" font-size="12" fill="#0C0D0E" font-family="ui-monospace,Menlo,monospace">'+nf(cum[i])+'</text>';
+    }
+  });
+  var svg = el("pipelineChart");
+  svg.innerHTML = s;
+
+  Array.prototype.forEach.call(svg.querySelectorAll(".hot"), function(g){
+    var yr = +g.dataset.year, i = YEARS.indexOf(yr);
+    var top = sites.filter(function(s){ return s.years[yr]; })
+                   .sort(function(a,b){ return b.years[yr]-a.years[yr]; })[0];
+    function go(){
+      STATE.year = (STATE.year === yr) ? null : yr;
+      STATE.open = null; renderDash();
+    }
+    g.addEventListener("click", go);
+    g.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } });
+    g.addEventListener("mousemove", function(e){
+      showTip(e, "<b>"+yr+"</b><span class='tl'>"+nf(data[i])+" homes reach us<br>"+nf(cum[i])+" with us by year end"+
+        (top ? "<br>Biggest site, "+esc(top.name) : "")+"<br>Click to filter the table</span>");
+    });
+    g.addEventListener("mouseleave", hideTip);
+  });
+}
+
+function renderHead(){
+  var cols = [
+    {k:"name", t:"Site"}, {k:"region", t:"Region"}, {k:"homes", t:"Homes"},
+    {k:null, t:"Mix, 1 to 4 bed"}, {k:"first", t:"Handover window"}, {k:"epc", t:"EPC"}
+  ];
+  el("tableHead").innerHTML = cols.map(function(c){
+    if(!c.k) return "<div>"+c.t+"</div>";
+    var active = STATE.sort === c.k;
+    return '<div><button type="button" data-sort="'+c.k+'" data-active="'+(active?"true":"false")+'">'+
+      c.t+'<span class="arrow">'+(active ? (STATE.dir===1?"\u25B2":"\u25BC") : "\u2195")+'</span></button></div>';
+  }).join("");
+  Array.prototype.forEach.call(el("tableHead").querySelectorAll("button"), function(b){
+    b.addEventListener("click", function(){
+      var k = b.dataset.sort;
+      if(STATE.sort === k){ STATE.dir *= -1; } else { STATE.sort = k; STATE.dir = 1; }
+      renderDash();
+    });
+  });
+}
+
+function siteDetail(s){
+  var r = RENT[s.region];
+  var gross = siteGrossRent(s), cost = siteCost(s);
+  var rentRows = s.mix.map(function(c,i){
+    return '<div class="ln"><span>'+BED_LABELS[i]+', '+c+' homes</span><span class="v">'+money0(r[i])+' a month</span></div>';
+  }).join("");
+  var phase = YEARS.filter(function(y){ return s.years[y]; }).map(function(y){
+    return '<div class="ln"><span>'+y+'</span><span class="v">'+s.years[y]+' homes</span></div>';
+  }).join("");
+  var money = '<div class="ln"><span>Capital</span><span class="v">'+moneyM(cost)+'</span></div>'+
+    '<div class="ln"><span>Cost per home</span><span class="v">'+money0(COST[s.region])+'</span></div>'+
+    '<div class="ln"><span>Rent a year when full</span><span class="v">'+moneyM(gross)+'</span></div>'+
+    '<div class="ln"><span>Gross yield on cost</span><span class="v">'+pct(gross/cost,2)+'</span></div>';
+  var say = s.confirmed
+    ? "This is one of the two sites named in the announcement, so the timing is confirmed rather than assumed. It is where our 2026 income comes from."
+    : "The location is my own allocation within " + REGIONS[s.region].label + ". The homes, the county and the delivery window all come from the announced portfolio.";
+  return '<div class="detail"><div class="detail-inner">'+
+    '<div><h4>Rent by size</h4>'+rentRows+'</div>'+
+    '<div><h4>When it reaches us</h4>'+phase+'</div>'+
+    '<div><h4>Money</h4>'+money+'</div>'+
+    '<p class="say">'+say+'</p></div></div>';
+}
+
+function renderRows(sites){
+  var host = el("siteRows");
+  if(!sites.length){
+    host.innerHTML = '<div class="empty">Nothing matches that. Clear the filters to see all 14 sites again.</div>';
+    return;
+  }
+  host.innerHTML = sites.map(function(s){
+    var open = STATE.open === s.name;
+    var mixStr = s.mix.map(function(c,i){ return '<i>'+(i+1)+'b</i> '+c; }).join("  ");
+    return '<div class="row body" data-site="'+esc(s.name)+'" role="button" tabindex="0" aria-expanded="'+(open?"true":"false")+'">'+
+      '<div><span class="site-name">'+s.name+'<span class="sub">'+s.area+' &middot; '+
+        (s.confirmed ? '<span class="badge confirmed">Named in announcement</span>' : '<span class="badge modelled">Modelled site split</span>')+
+      '</span></span></div>'+
+      '<div data-label="Region">'+REGIONS[s.region].short+'</div>'+
+      '<div data-label="Homes"><span class="num">'+nf(homesShown(s))+'</span></div>'+
+      '<div data-label="Mix"><span class="mix-inline">'+mixStr+'</span></div>'+
+      '<div data-label="Handover">'+s.first+' to '+s.last+'</div>'+
+      '<div data-label="EPC"><span class="epc"><span class="pill '+(s.epc==="B"?"b":"")+'">'+s.epc+'</span></span></div>'+
+    '</div>' + (open ? siteDetail(s) : "");
+  }).join("");
+
+  Array.prototype.forEach.call(host.querySelectorAll(".row.body"), function(row){
+    function toggle(){
+      var n = row.dataset.site;
+      STATE.open = (STATE.open === n) ? null : n;
+      renderDash();
+    }
+    row.addEventListener("click", toggle);
+    row.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); toggle(); } });
+  });
+}
+
+function renderFilters(sites){
+  var chips = [];
+  if(STATE.region !== "all") chips.push({k:"region", t:REGIONS[STATE.region].label});
+  if(STATE.type !== null) chips.push({k:"type", t:BED_LABELS[STATE.type]});
+  if(STATE.year !== null) chips.push({k:"year", t:"Handed over in " + STATE.year});
+  el("activeFilters").innerHTML = chips.map(function(c){
+    return '<button class="fchip" data-clear="'+c.k+'">'+c.t+'<span class="x">&times;</span></button>';
+  }).join("");
+  Array.prototype.forEach.call(el("activeFilters").querySelectorAll(".fchip"), function(b){
+    b.addEventListener("click", function(){
+      var k = b.dataset.clear;
+      if(k === "region"){ STATE.region = "all"; fRegion.value = "all"; }
+      if(k === "type"){ STATE.type = null; fType.value = "all"; }
+      if(k === "year"){ STATE.year = null; }
+      STATE.open = null; renderDash();
+    });
+  });
+
+  var homes = sites.reduce(function(a,s){ return a + homesShown(s); }, 0);
+  var what = STATE.type === null ? "homes" : BED_LABELS[STATE.type] + " homes";
+  el("resultCount").textContent = "Showing " + nf(homes) + " " + what + " across " + sites.length + " site" + (sites.length===1?"":"s");
+}
+
+function renderDash(){
+  var sites = selected();
+  renderKpis(sites); renderMix(sites); drawPipeline(sites);
+  renderHead(); renderRows(sites); renderFilters(sites);
+}
+fRegion.addEventListener("change", function(){ STATE.region = fRegion.value; STATE.open=null; renderDash(); });
+fType.addEventListener("change", function(){ STATE.type = fType.value === "all" ? null : +fType.value; STATE.open=null; renderDash(); });
+el("fReset").addEventListener("click", function(){
+  STATE.region="all"; STATE.type=null; STATE.year=null; STATE.open=null;
+  fRegion.value="all"; fType.value="all"; renderDash();
+});
+
+/* ================= PEER CHART ================= */
+function drawPeerChart(){
+  var rows = [
+    {n:"Grainger", v:11200, note:"Mostly flats in city centres"},
+    {n:"Legal and General", v:10000, note:"Mixed, across the residential platform"},
+    {n:"Lloyds Living", v:8850, note:"Family houses, managed in house", us:true},
+    {n:"Our 2030 target", v:50000, note:"Where we have said we want to be", ghost:true}
+  ];
+  var W=760, rowH=54, padL=170, padR=90, padT=10;
+  var H = padT + rows.length*rowH + 20;
+  var max = 50000, plotW = W - padL - padR;
+  var s = "";
+  rows.forEach(function(r,i){
+    var y = padT + i*rowH;
+    var w = (r.v/max)*plotW;
+    s += '<text x="'+(padL-16)+'" y="'+(y+26)+'" text-anchor="end" font-size="13" fill="'+(r.us?"#0C0D0E":"#3A3E42")+'" font-weight="'+(r.us?"700":"400")+'">'+r.n+'</text>';
+    s += '<g class="hot" data-i="'+i+'"><rect x="'+padL+'" y="'+y+'" width="'+plotW+'" height="'+rowH+'" fill="transparent"/>'+
+      '<rect x="'+padL+'" y="'+(y+9)+'" width="'+Math.max(w,2)+'" height="22" rx="4" fill="'+(r.ghost?"none":(r.us?"#0C0D0E":"#9BA1A7"))+'"'+
+      (r.ghost?' stroke="#6E7379" stroke-width="1.2" stroke-dasharray="5 5"':'')+'/>'+
+      '<text x="'+(padL+Math.max(w,2)+12)+'" y="'+(y+25)+'" font-size="12.5" fill="#0C0D0E" font-family="ui-monospace,Menlo,monospace">'+nf(r.v)+'</text></g>';
+  });
+  var svg = el("peerChart");
+  svg.setAttribute("viewBox","0 0 "+W+" "+H);
+  svg.innerHTML = s;
+  Array.prototype.forEach.call(svg.querySelectorAll(".hot"), function(g){
+    var r = rows[+g.dataset.i];
+    g.addEventListener("mousemove", function(e){ showTip(e, "<b>"+r.n+"</b><span class='tl'>"+nf(r.v)+" homes<br>"+r.note+"</span>"); });
+    g.addEventListener("mouseleave", hideTip);
+  });
+}
+
+/* ================= COMMITTEE PACK ================= */
+function statLines(rows){
+  return rows.map(function(r){
+    return '<div class="stat-line"><span class="l">'+r[0]+'</span><span class="v">'+r[1]+'</span></div>';
+  }).join("");
+}
+(function packStatic(){
+  var mix=[0,0,0,0]; SITES.forEach(function(s){ for(var i=0;i<4;i++) mix[i]+=s.mix[i]; });
+  el("packOverview").innerHTML = statLines([
+    ["Homes", nf(TOTAL_HOMES)],
+    ["Developments", "14"],
+    ["Three and four bed share", pct((mix[2]+mix[3])/TOTAL_HOMES,0)],
+    ["Homes in East Anglia, a new region for us", "255"],
+    ["First handovers", "Autumn 2026"],
+    ["Final handovers", "End 2029"]
+  ]);
+  el("packRent").innerHTML = statLines([
+    ["Average asking rent a month", money0(BASE_GROSS/TOTAL_HOMES/12)],
+    ["Three bed, cheapest to dearest region", money0(RENT.merseyside[2])+" to "+money0(RENT.cambsNorthants[2])],
+    ["Premium over local second hand stock", "4 to 7 percent"],
+    ["Ceiling we hold ourselves to", "95 percent of the local upper quartile"],
+    ["Rent reviews", "Once a year"]
+  ]);
+
+  var risks = [
+    {sev:"high", name:"Homes sit empty longer than planned", mit:"We open marketing six weeks before each handover and phase the lettings so no site takes more than about 60 homes in a quarter. This is the risk that moves the return most, which is why it gets the most attention.", rank:"Voids"},
+    {sev:"high", name:"Build costs and the programme slip", mit:"Prices are fixed in the contract, so the exposure is timing rather than price. I have run the cash flow with a two quarter delay on every site to see what that does.", rank:"Delivery"},
+    {sev:"med", name:"Running costs rise faster than rents", mit:"The repairs budget is set per home and reviewed twice a year. New build stock at EPC B or better keeps early repair spend low, which buys us a few years.", rank:"Inflation"},
+    {sev:"med", name:"One housebuilder supplies the whole portfolio", mit:"Barratt Redrow is now over 3,000 homes with us across three deals. That is a good relationship rather than a problem today, but it is worth naming as a concentration.", rank:"Counterparty"},
+    {sev:"med", name:"The Renters Rights Act adds process cost", mit:"Open ended tenancies and one review a year already match how we planned to operate. The cost lands in systems and training rather than in the rent line.", rank:"Regulation"},
+    {sev:"low", name:"East Anglia is a region we have not operated in", mit:"255 homes there and the first lettings are not until 2027, so we have a year to build the local team and the supplier list before it matters.", rank:"New region"}
+  ];
+  el("packRisks").innerHTML = risks.map(function(r,i){
+    return '<button class="risk-item" type="button" aria-expanded="false" data-r="'+i+'">'+
+      '<span class="sev '+r.sev+'"></span><span class="rname">'+r.name+'</span><span class="rank">'+r.rank+'</span></button>'+
+      '<p class="risk-mit" id="mit-'+i+'">'+r.mit+'</p>';
+  }).join("");
+  Array.prototype.forEach.call(el("packRisks").querySelectorAll(".risk-item"), function(b){
+    b.addEventListener("click", function(){
+      var m = el("mit-"+b.dataset.r);
+      var open = m.classList.toggle("open");
+      b.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+})();
+
+function renderPackBudget(){
+  var g = grownGross();
+  var noi = noiFrom(g, TOTAL_HOMES, MODEL.voidRate);
+  el("packBudget").innerHTML = statLines([
+    ["Purchase price", moneyM(TOTAL_COST)],
+    ["Acquisition costs at 1.8 percent", moneyM(TOTAL_COST*OPEX.acquisitionCostsPct)],
+    ["Total capital", moneyM(TOTAL_CAPITAL)],
+    ["Rent a year when full", moneyM(g)],
+    ["Empty homes, arrears and running costs", moneyM(g-noi)],
+    ["Net operating income", moneyM(noi)],
+    ["Gross yield", pct(g/TOTAL_CAPITAL,2)],
+    ["Net stabilised yield", pct(noi/TOTAL_CAPITAL,2)]
+  ]);
+  el("packAssump").textContent = "Based on a " + pct(MODEL.voidRate,1) + " void rate and " + pct(MODEL.growth,1) + " rent growth, set on the financial model tab.";
+}
+
+/* ================= MODEL ================= */
+function th(cells){ return "<thead><tr>"+cells.map(function(c){ return "<th>"+c+"</th>"; }).join("")+"</tr></thead>"; }
+
+var REG_SORT = { key:"first", dir:1 };
+function renderRegister(){
+  var order = {"Autumn 2026":0,"H1 2027":1,"H2 2027":2,"H1 2028":3,"H2 2028":4,"H1 2029":5,"H2 2029":6};
+  var rows = SITES.slice().sort(function(a,b){
+    var A,B,k=REG_SORT.key;
+    if(k==="name"){A=a.name;B=b.name;}
+    else if(k==="region"){A=REGIONS[a.region].short;B=REGIONS[b.region].short;}
+    else if(k==="homes"){A=a.homes;B=b.homes;}
+    else if(k==="capital"){A=siteCost(a);B=siteCost(b);}
+    else if(k==="rent"){A=siteGrossRent(a,MODEL.growth);B=siteGrossRent(b,MODEL.growth);}
+    else if(k==="yield"){A=siteGrossRent(a,MODEL.growth)/siteCost(a);B=siteGrossRent(b,MODEL.growth)/siteCost(b);}
+    else {A=order[a.first];B=order[b.first];}
+    if(A<B) return -REG_SORT.dir; if(A>B) return REG_SORT.dir; return 0;
+  });
+  var cols = [
+    {k:"name",t:"Site"},{k:"region",t:"Region"},{k:"homes",t:"Homes"},{k:null,t:"Mix 1 to 4 bed"},
+    {k:"first",t:"First handover"},{k:null,t:"Cost per home"},{k:"capital",t:"Capital"},
+    {k:"rent",t:"Gross rent a year"},{k:"yield",t:"Gross yield on cost"}
+  ];
+  var head = "<thead><tr>"+cols.map(function(c){
+    if(!c.k) return "<th>"+c.t+"</th>";
+    var a = REG_SORT.key===c.k;
+    return '<th><button type="button" data-rsort="'+c.k+'">'+c.t+" "+(a?(REG_SORT.dir===1?"\u25B2":"\u25BC"):"\u2195")+"</button></th>";
+  }).join("")+"</tr></thead>";
+  var body = rows.map(function(s){
+    var gross = siteGrossRent(s, MODEL.growth), cost = siteCost(s);
+    return "<tr><td>"+s.name+"</td><td>"+REGIONS[s.region].short+"</td>"+
+      '<td class="n">'+nf(s.homes)+"</td>"+
+      '<td class="n">'+s.mix.join(" / ")+"</td><td>"+s.first+"</td>"+
+      '<td class="n">'+money0(COST[s.region])+"</td>"+
+      '<td class="n">'+moneyM(cost)+"</td>"+
+      '<td class="n">'+moneyM(gross)+"</td>"+
+      '<td class="n">'+pct(gross/cost,2)+"</td></tr>";
+  }).join("");
+  var g = grownGross();
+  var total = '<tr class="total"><td>Portfolio</td><td>Five regions</td><td class="n">'+nf(TOTAL_HOMES)+'</td>'+
+    '<td class="n">'+SITES.reduce(function(a,s){return [a[0]+s.mix[0],a[1]+s.mix[1],a[2]+s.mix[2],a[3]+s.mix[3]];},[0,0,0,0]).join(" / ")+'</td>'+
+    '<td>Autumn 2026</td><td class="n">'+money0(TOTAL_COST/TOTAL_HOMES)+'</td>'+
+    '<td class="n">'+moneyM(TOTAL_COST)+'</td><td class="n">'+moneyM(g)+'</td>'+
+    '<td class="n">'+pct(g/TOTAL_COST,2)+'</td></tr>';
+  el("tblRegister").innerHTML = head + "<tbody>" + body + total + "</tbody>";
+  Array.prototype.forEach.call(el("tblRegister").querySelectorAll("[data-rsort]"), function(b){
+    b.addEventListener("click", function(){
+      var k = b.dataset.rsort;
+      if(REG_SORT.key === k){ REG_SORT.dir *= -1; } else { REG_SORT.key = k; REG_SORT.dir = 1; }
+      renderRegister();
+    });
+  });
+}
+
+function renderRents(){
+  var gr = MODEL.growth;
+  var rows = Object.keys(REGIONS).map(function(k){
+    var r = RENT[k];
+    var inRegion = SITES.filter(function(s){ return s.region === k; });
+    var homes = inRegion.reduce(function(a,s){ return a+s.homes; },0);
+    var gross = inRegion.reduce(function(a,s){ return a+siteGrossRent(s, gr); },0);
+    return "<tr><td>"+REGIONS[k].label+'</td><td class="n">'+nf(homes)+"</td>"+
+      r.map(function(v){ return '<td class="n">'+money0(v*(1+gr))+"</td>"; }).join("")+
+      '<td class="n">'+money0(gross/homes/12)+'</td><td class="n">'+moneyM(gross)+"</td></tr>";
+  }).join("");
+  var g = grownGross();
+  el("tblRents").innerHTML = th(["Region","Homes","1 bed","2 bed","3 bed","4 bed","Weighted average","Gross rent a year"])+
+    "<tbody>"+rows+
+    '<tr class="total"><td>Portfolio</td><td class="n">'+nf(TOTAL_HOMES)+'</td>'+
+    '<td class="n" colspan="4">Weighted by the mix on each site</td>'+
+    '<td class="n">'+money0(g/TOTAL_HOMES/12)+'</td><td class="n">'+moneyM(g)+'</td></tr></tbody>';
+}
+
+function renderBudget(){
+  var g = grownGross(), h = TOTAL_HOMES, v = MODEL.voidRate;
+  var lines = [
+    ["Rent a year with every home let", g, ""],
+    ["Empty homes at "+pct(v,1), -g*v, "sub"],
+    ["Rent we never collect at 0.8 percent", -g*OPEX.badDebt, "sub"],
+    ["Rent actually collected", g*(1-v-OPEX.badDebt), ""],
+    ["Property management, our own team", -g*OPEX.managementPct, "sub"],
+    ["Repairs and maintenance, "+money0(OPEX.repairsPerHome)+" a home", -h*OPEX.repairsPerHome, "sub"],
+    ["Insurance, "+money0(OPEX.insurancePerHome)+" a home", -h*OPEX.insurancePerHome, "sub"],
+    ["Estate and service charges, "+money0(OPEX.estatePerHome)+" a home", -h*OPEX.estatePerHome, "sub"],
+    ["Letting and turnover costs, "+money0(OPEX.lettingPerHome)+" a home", -h*OPEX.lettingPerHome, "sub"],
+    ["Compliance and safety checks, "+money0(OPEX.compliancePerHome)+" a home", -h*OPEX.compliancePerHome, "sub"]
+  ];
+  var noi = noiFrom(g, h, v);
+  var body = lines.map(function(l){
+    return "<tr"+(l[2]==="sub"?' class="sub"':"")+"><td>"+l[0]+"</td>"+
+      '<td class="n">'+(l[1]<0 ? "("+nf(Math.abs(l[1]))+")" : nf(l[1]))+"</td>"+
+      '<td class="n">'+pct(l[1]/g,1)+'</td><td class="n">'+money0(Math.abs(l[1])/h)+"</td></tr>";
+  }).join("");
+  var sum =
+    '<tr class="total"><td>Net operating income</td><td class="n">'+nf(noi)+'</td><td class="n">'+pct(noi/g,1)+'</td><td class="n">'+money0(noi/h)+'</td></tr>'+
+    '<tr class="sub"><td>Total capital, price plus 1.8 percent costs</td><td class="n">'+nf(TOTAL_CAPITAL)+'</td><td class="n"></td><td class="n">'+money0(TOTAL_CAPITAL/h)+'</td></tr>'+
+    '<tr class="sub"><td>Gross yield on total capital</td><td class="n">'+pct(g/TOTAL_CAPITAL,2)+'</td><td class="n"></td><td class="n"></td></tr>'+
+    '<tr class="total"><td>Net stabilised yield</td><td class="n">'+pct(noi/TOTAL_CAPITAL,2)+'</td><td class="n"></td><td class="n"></td></tr>';
+  el("tblBudget").innerHTML = th(["Line","Amount a year","Share of rent","Per home"])+"<tbody>"+body+sum+"</tbody>";
+}
+
+(function renderOccTable(){
+  var rows = OCC_MONTHS.map(function(m){
+    var due = m.let*m.rent, collected = due*m.coll, arrears = due*m.arrPct;
+    return "<tr><td>"+m.m+'</td><td class="n">'+nf(m.let)+'</td><td class="n">'+pct(m.let/COHORT_HOMES,1)+'</td>'+
+      '<td class="n">'+money0(m.rent)+'</td><td class="n">'+money0(due)+'</td><td class="n">'+money0(collected)+'</td>'+
+      '<td class="n">'+pct(m.coll,1)+'</td><td class="n">'+money0(arrears)+'</td><td class="n">'+pct(m.arrPct,1)+"</td></tr>";
+  }).join("");
+  var last = OCC_MONTHS[OCC_MONTHS.length-1];
+  var due = OCC_MONTHS.reduce(function(a,m){ return a+m.let*m.rent; },0);
+  var coll = OCC_MONTHS.reduce(function(a,m){ return a+m.let*m.rent*m.coll; },0);
+  el("tblOcc").innerHTML = th(["Month","Homes let","Occupancy","Average rent","Rent due","Rent collected","Collection rate","Arrears","Arrears share"])+
+    "<tbody>"+rows+
+    '<tr class="total"><td>Twelve months</td><td class="n">'+nf(last.let)+'</td><td class="n">'+pct(last.let/COHORT_HOMES,1)+'</td>'+
+    '<td class="n"></td><td class="n">'+money0(due)+'</td><td class="n">'+money0(coll)+'</td>'+
+    '<td class="n">'+pct(coll/due,1)+'</td><td class="n"></td><td class="n"></td></tr></tbody>';
+})();
+
+function drawOccChart(){
+  var W=760,H=260,padL=54,padR=30,padT=18,padB=42;
+  var plotW=W-padL-padR, plotH=H-padT-padB;
+  var lo=0.80, hi=1.0;
+  var x = function(i){ return padL + (plotW/(OCC_MONTHS.length-1))*i; };
+  var y = function(v){ return padT + plotH - ((v-lo)/(hi-lo))*plotH; };
+  var s = "";
+  [0.80,0.85,0.90,0.95,1.00].forEach(function(v){
+    s += '<line x1="'+padL+'" y1="'+y(v)+'" x2="'+(W-padR)+'" y2="'+y(v)+'" stroke="rgba(12,13,14,0.08)"/>'+
+      '<text x="'+(padL-12)+'" y="'+(y(v)+4)+'" text-anchor="end" font-size="11" fill="#9BA1A7" font-family="ui-monospace,Menlo,monospace">'+pct(v,0)+'</text>';
+  });
+  var pts = OCC_MONTHS.map(function(m,i){ return [x(i), y(m.let/COHORT_HOMES)]; });
+  s += '<polyline points="'+pts.map(function(p){return p[0]+","+p[1];}).join(" ")+'" fill="none" stroke="#0C0D0E" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+  OCC_MONTHS.forEach(function(m,i){
+    var p = pts[i];
+    s += '<g class="hot" data-i="'+i+'"><rect x="'+(p[0]-plotW/24)+'" y="'+padT+'" width="'+(plotW/12)+'" height="'+plotH+'" fill="transparent"/>'+
+      '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="4" fill="#fff" stroke="#0C0D0E" stroke-width="2"/></g>';
+    if(i%2===0 || i===OCC_MONTHS.length-1){
+      s += '<text x="'+p[0]+'" y="'+(padT+plotH+24)+'" text-anchor="middle" font-size="11" fill="#6E7379">'+m.m.split(" ")[0]+'</text>';
+    }
+  });
+  var svg = el("occChart");
+  svg.innerHTML = s;
+  Array.prototype.forEach.call(svg.querySelectorAll(".hot"), function(g){
+    var m = OCC_MONTHS[+g.dataset.i];
+    g.addEventListener("mousemove", function(e){
+      showTip(e, "<b>"+m.m+"</b><span class='tl'>"+m.let+" of 598 homes let, "+pct(m.let/COHORT_HOMES,1)+
+        "<br>Collection "+pct(m.coll,1)+"<br>Arrears "+pct(m.arrPct,1)+" of rent due</span>");
+    });
+    g.addEventListener("mouseleave", hideTip);
+  });
+}
+
+var VOIDS = [0.02,0.03,0.045,0.06,0.075];
+var GROWTHS = [0,0.015,0.03,0.045];
+function renderSens(){
+  var head = '<thead><tr><th>Net yield</th>'+GROWTHS.map(function(g){ return "<th>"+pct(g,1)+" rent growth</th>"; }).join("")+"</tr></thead>";
+  var body = VOIDS.map(function(v){
+    var cells = GROWTHS.map(function(g){
+      var y = noiFrom(BASE_GROSS*(1+g), TOTAL_HOMES, v)/TOTAL_CAPITAL;
+      var near = Math.abs(v-MODEL.voidRate) < 0.0051 && Math.abs(g-MODEL.growth) < 0.0076;
+      var strength = Math.max(0, Math.min(1, (y-0.038)/0.020));
+      var bg = "rgba(12,13,14,"+(0.04+strength*0.20).toFixed(3)+")";
+      return '<td class="cell" data-v="'+v+'" data-g="'+g+'" style="background:'+bg+
+        (near?";box-shadow:inset 0 0 0 1.5px #0C0D0E;font-weight:700":"")+'">'+pct(y,2)+"</td>";
+    }).join("");
+    return "<tr><td>"+pct(v,1)+" voids</td>"+cells+"</tr>";
+  }).join("");
+  el("tblSens").innerHTML = head+"<tbody>"+body+"</tbody>";
+  Array.prototype.forEach.call(el("tblSens").querySelectorAll("td.cell"), function(c){
+    c.addEventListener("click", function(){
+      MODEL.voidRate = parseFloat(c.dataset.v);
+      MODEL.growth = parseFloat(c.dataset.g);
+      el("voidSlider").value = (MODEL.voidRate*100).toFixed(1);
+      el("growthSlider").value = (MODEL.growth*100).toFixed(1);
+      refreshModel();
+    });
+  });
+}
+
+function refreshModel(){
+  el("voidVal").textContent = pct(MODEL.voidRate,1);
+  el("growthVal").textContent = pct(MODEL.growth,1);
+  el("liveYield").textContent = pct(noiFrom(grownGross(), TOTAL_HOMES, MODEL.voidRate)/TOTAL_CAPITAL,2);
+  renderRegister(); renderRents(); renderBudget(); renderSens(); renderPackBudget();
+}
+el("voidSlider").addEventListener("input", function(){ MODEL.voidRate = (+this.value)/100; refreshModel(); });
+el("growthSlider").addEventListener("input", function(){ MODEL.growth = (+this.value)/100; refreshModel(); });
+el("assumpReset").addEventListener("click", function(){
+  MODEL.voidRate = 0.045; MODEL.growth = 0;
+  el("voidSlider").value = 4.5; el("growthSlider").value = 0; refreshModel();
+});
+
+var stabs = Array.prototype.slice.call(document.querySelectorAll(".stab"));
+stabs.forEach(function(b){
+  b.addEventListener("click", function(){
+    stabs.forEach(function(o){ o.setAttribute("aria-selected", o===b ? "true":"false"); });
+    Array.prototype.forEach.call(document.querySelectorAll(".sheet-pane"), function(p){
+      p.classList.toggle("is-active", p.id === "pane-"+b.dataset.sheet);
+    });
+    if(b.dataset.sheet === "occupancy") requestAnimationFrame(drawOccChart);
+  });
+});
+
+var fxBtn = el("fxToggle");
+fxBtn.addEventListener("click", function(){
+  var open = fxBtn.getAttribute("aria-pressed") !== "true";
+  fxBtn.setAttribute("aria-pressed", open ? "true":"false");
+  fxBtn.textContent = open ? "Hide formulas" : "Show formulas";
+  Array.prototype.forEach.call(document.querySelectorAll("[data-fx]"), function(p){
+    p.classList.toggle("is-open", open);
+  });
+});
+
+/* ---------------- boot ---------------- */
+renderDash();
+refreshModel();
+drawPeerChart();
+drawOccChart();
+
+})();
+</script>
+</body>
+</html>
